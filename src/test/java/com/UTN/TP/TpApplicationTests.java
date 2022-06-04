@@ -1,10 +1,10 @@
-package com.tpfinal.Lab3;
+package com.UTN.TP;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class Lab3ApplicationTests {
+class TpApplicationTests {
 
 	@Test
 	void contextLoads() {
