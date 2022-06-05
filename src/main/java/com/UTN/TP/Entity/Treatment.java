@@ -1,5 +1,6 @@
 package com.UTN.TP.Entity;
 
+import com.UTN.TP.Service.ActionService;
 import lombok.Data;
 
 import java.util.Date;
@@ -12,7 +13,7 @@ public class Treatment {
 
     private String name;
 
-    private List<ActionModel> actionList;
+    private List<Action> actionList;
 
     private Date init;
 
