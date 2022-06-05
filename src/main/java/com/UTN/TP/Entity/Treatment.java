@@ -1,6 +1,5 @@
 package com.UTN.TP.Entity;
 
-import com.UTN.TP.Model.ActionModel;
 import lombok.Data;
 
 import java.util.Date;
