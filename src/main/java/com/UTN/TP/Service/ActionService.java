@@ -1,15 +1,16 @@
 package com.UTN.TP.Service;
 
+import com.UTN.TP.Model.ActionModel;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
+
+import java.util.List;
 
 
 public interface ActionService {
 
-    String drinkWater();
-    String takePill();
-    String measureBloodPressure();
-    String takeTempeture();
+    ActionModel addAction(ActionModel actionModel);
+    List<ActionModel> getActionList();
 
 
 }

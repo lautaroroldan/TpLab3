@@ -4,8 +4,10 @@ import com.UTN.TP.Model.DoctorModel;
 import com.UTN.TP.Model.PatientModel;
 
 import java.util.HashSet;
+import java.util.List;
 
 public interface DoctorService {
     //TODO Revisar sobre el HashMap
-    PatientModel addPatient(DoctorModel doctorModel, PatientModel patientModel);
+    DoctorModel addDoctor(DoctorModel doctorModel);
+    List<DoctorModel> getDoctorList();
 }
