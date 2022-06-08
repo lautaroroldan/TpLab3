@@ -4,31 +4,25 @@ import com.UTN.TP.Model.DiseaseModel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.persistence.*;
 import java.util.Date;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
-@Table(name = "patient")
+@Document(value = "patient")
 public class Patient extends Person{
 
     @Id
-    @GeneratedValue
-    @Column(name = "id")
     private long id;
 
-    @Column(name = "dni")
     private long dni;
 
-    @Column(name = "entryDate")
     private Date entry;
 
-    @Column(name = "disease")
     private Disease disease;
 
-    @Column(name = "serve")
     private boolean serve;
 }

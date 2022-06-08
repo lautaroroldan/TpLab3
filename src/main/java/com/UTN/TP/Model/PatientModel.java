@@ -5,7 +5,11 @@ import lombok.*;
 import java.util.Date;
 
 
-@Data
+@Setter
+@Getter
+@ToString
+@AllArgsConstructor
+@NoArgsConstructor
 public class PatientModel extends PersonModel{
     private long id;
     private long dni;

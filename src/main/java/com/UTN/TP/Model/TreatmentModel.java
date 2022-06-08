@@ -6,7 +6,11 @@ import lombok.*;
 import java.util.Date;
 import java.util.List;
 
-@Data
+@Setter
+@Getter
+@ToString
+@AllArgsConstructor
+@NoArgsConstructor
 public class TreatmentModel {
     private long id;
     private String name;

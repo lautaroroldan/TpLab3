@@ -1,10 +1,14 @@
 package com.UTN.TP.Model;
 
-import lombok.Data;
+import lombok.*;
 
 import java.util.Date;
 
-@Data
+@Setter
+@Getter
+@ToString
+@AllArgsConstructor
+@NoArgsConstructor
 public class ActionModel {
     private long id;
     private String nameAction;

@@ -1,25 +1,21 @@
 package com.UTN.TP.Entity;
 
-import com.UTN.TP.Model.PatientModel;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.persistence.*;
 import java.util.HashMap;
 
-@Data
+@Setter
+@Getter
+@ToString
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
-@Table(name = "doctor")
+@Document(value = "doctor")
 public class Doctor extends Person{
 
     @Id
-    @GeneratedValue
-    @Column(name = "id")
     private long id;
 
-    @Column(name = "patients")
     private HashMap<String, Patient> patients;
 }

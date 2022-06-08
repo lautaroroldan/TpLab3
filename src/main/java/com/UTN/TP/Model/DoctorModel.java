@@ -5,7 +5,11 @@ import lombok.*;
 import java.util.HashMap;
 
 
-@Data
+@Setter
+@Getter
+@ToString
+@AllArgsConstructor
+@NoArgsConstructor
 public class DoctorModel extends PersonModel{
     private long id;
     ///Todo resivar sobre el Hashmap

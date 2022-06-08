@@ -2,7 +2,11 @@ package com.UTN.TP.Model;
 
 import lombok.*;
 
-@Data
+@Setter
+@Getter
+@ToString
+@AllArgsConstructor
+@NoArgsConstructor
 public class DiseaseModel {
     private long id;
     private String name;

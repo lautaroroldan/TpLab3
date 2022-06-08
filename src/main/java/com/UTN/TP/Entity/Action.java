@@ -1,32 +1,26 @@
 package com.UTN.TP.Entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.persistence.*;
 import java.util.Date;
 
-@Entity
-@Data
+@Setter
+@Getter
+@ToString
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "action")
+@Document(value = "action")
 public class Action {
     @Id
-    @GeneratedValue
-    @Column(name = "id")
     private long id;
 
-    @Column(name = "nameAction")
     private String nameAction;
 
-    @Column(name = "dateInit")
     private Date init;
 
-    @Column(name = "dateEnd")
     private Date end;
 
-    @Column(name = "doIt")
     private boolean doIt;
 }

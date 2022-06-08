@@ -1,11 +1,11 @@
 package com.UTN.TP.Repository;
 
 import com.UTN.TP.Entity.Admin;
-import org.springframework.data.jpa.repository.JpaRepository;
+
+import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
-import java.io.Serializable;
 
-@Repository("AdminJpaRepository")
-public interface AdminRepository extends JpaRepository<Admin, Serializable> {
+@Repository
+public interface AdminRepository extends MongoRepository<Admin,Long> {
 }

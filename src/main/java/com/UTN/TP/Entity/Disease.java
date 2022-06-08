@@ -1,29 +1,24 @@
 package com.UTN.TP.Entity;
 
-import com.UTN.TP.Model.TreatmentModel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.persistence.*;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
-@Table(name = "disease")
+
+@Document(value = "disease")
 public class Disease {
 
     @Id
-    @GeneratedValue
-    @Column(name = "id")
     private long id;
 
-    @Column(name = "name")
     private String name;
 
-    @Column(name = "treatment")
     private Treatment treatment;
-
 
 }
