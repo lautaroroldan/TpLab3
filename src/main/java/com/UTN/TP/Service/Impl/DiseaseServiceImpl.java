@@ -37,10 +37,10 @@ public class DiseaseServiceImpl implements DiseaseService {
     }
 
     @Override
-    public DiseaseModel findById(Integer id) {
+    public DiseaseModel findById(String id) {
 
-        String pase = Integer.toString(id);
-        Optional<Disease> optionalDisease = diseaseRepository.findById(pase);
+
+        Optional<Disease> optionalDisease = diseaseRepository.findById(id);
 
         if(optionalDisease.isPresent()){
             return INSTANCE.toModel(optionalDisease.get());

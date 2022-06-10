@@ -36,7 +36,6 @@ public class AdminController {
 
         adminModel.setAdminId(nextSequenceService.getNextSequenceAdmin("customSequence"));
 
-        //LOG.info("el id del action es: " + actionModel.getId().toString());
 
         RedirectView redirectView = new RedirectView("/adminController/addAdmin");
         adminService.addAdmin(adminModel);
