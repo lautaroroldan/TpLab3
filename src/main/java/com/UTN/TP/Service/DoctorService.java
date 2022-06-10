@@ -10,4 +10,5 @@ public interface DoctorService {
     //TODO Revisar sobre el HashMap
     DoctorModel addDoctor(DoctorModel doctorModel);
     List<DoctorModel> getDoctorList();
+    DoctorModel findById(String id);
 }
