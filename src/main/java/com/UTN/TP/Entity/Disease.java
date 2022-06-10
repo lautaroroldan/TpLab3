@@ -17,7 +17,7 @@ public class Disease {
     @Id
     private String id;
 
-    private Integer diseaseId;
+    private int diseaseId;
 
     private String name;
 

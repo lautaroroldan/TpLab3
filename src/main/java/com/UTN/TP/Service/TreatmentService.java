@@ -9,4 +9,5 @@ public interface TreatmentService {
 
     TreatmentModel addTreatment(TreatmentModel treatmentModel);
     List<TreatmentModel> getTreatmentList();
+    TreatmentModel findById(String id);
 }

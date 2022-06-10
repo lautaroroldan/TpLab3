@@ -1,8 +1,6 @@
-package com.UTN.TP.Mappers;
+package com.UTN.TP.Mapper;
 
-import com.UTN.TP.Entity.Patient;
 import com.UTN.TP.Entity.Person;
-import com.UTN.TP.Model.PatientModel;
 import com.UTN.TP.Model.PersonModel;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;

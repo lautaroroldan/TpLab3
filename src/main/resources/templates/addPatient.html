@@ -80,15 +80,13 @@
                             <div class="row">
                                 <div class="col-12">
 
-                                    <select th:field="${identifier}" class="select form-control-lg" >
-
+                                    <select th:field="${diseaseModel.diseaseId}" class="select form-control-lg" >
 
                                         <option th:each="diseases : ${diseaseList}"
                                                 th:value ="${diseases.diseaseId}"
                                                 th:text="${diseases.name}"
                                                 th:selected="true"
                                         />
-
 
                                     </select>
 

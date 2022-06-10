@@ -1,7 +1,7 @@
 package com.UTN.TP.Service.Impl;
 
 import com.UTN.TP.Entity.Doctor;
-import com.UTN.TP.Mappers.DoctorMapper;
+import com.UTN.TP.Mapper.DoctorMapper;
 import com.UTN.TP.Model.DoctorModel;
 import com.UTN.TP.Repository.DoctorRepository;
 import com.UTN.TP.Service.DoctorService;
@@ -9,7 +9,6 @@ import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.print.Doc;
 import java.util.ArrayList;
 import java.util.List;
 

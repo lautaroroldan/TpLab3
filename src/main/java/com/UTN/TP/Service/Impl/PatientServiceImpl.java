@@ -1,7 +1,7 @@
 package com.UTN.TP.Service.Impl;
 
 import com.UTN.TP.Entity.Patient;
-import com.UTN.TP.Mappers.PatientMapper;
+import com.UTN.TP.Mapper.PatientMapper;
 import com.UTN.TP.Model.PatientModel;
 import com.UTN.TP.Repository.PatientRepository;
 import com.UTN.TP.Service.PatientService;
@@ -36,9 +36,9 @@ public class PatientServiceImpl implements PatientService {
     }
 
     //TODO Ojo con esto, ver que devuelve un Patient y no un PatientModel
-    public Optional<Patient> findById(String id){
-
-        return patientRepository.findById(id);
+    public PatientModel findById(String id){
+        Optional<Patient> opt = patientRepository.findById(id);
+        return INSTANCE.toModel(opt.get());
 
     }
 }

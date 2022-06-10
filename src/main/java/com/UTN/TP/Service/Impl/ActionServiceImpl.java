@@ -3,8 +3,10 @@ package com.UTN.TP.Service.Impl;
 
 import com.UTN.TP.Entity.Action;
 import com.UTN.TP.Entity.Disease;
-import com.UTN.TP.Mappers.ActionMapper;
+import com.UTN.TP.Entity.Treatment;
+import com.UTN.TP.Mapper.ActionMapper;
 import com.UTN.TP.Model.ActionModel;
+import com.UTN.TP.Model.DiseaseModel;
 import com.UTN.TP.Repository.ActionRepository;
 import com.UTN.TP.Service.ActionService;
 import org.mapstruct.factory.Mappers;
@@ -13,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service("ActionServiceImpl")
 public class ActionServiceImpl implements ActionService {
@@ -34,5 +37,17 @@ public class ActionServiceImpl implements ActionService {
         List<ActionModel> actionModels = new ArrayList<>();
         actions.forEach(x -> actionModels.add(INSTANCE.toModel(x)));
         return actionModels;
+    }
+
+    @Override
+    public ActionModel findById(String id) {
+        Optional<Action> opt = actionRepository.findById(id);
+
+        if(opt.isPresent()){
+            return INSTANCE.toModel(opt.get());
+        }else{
+            System.out.println("Entre al else");
+            return new ActionModel();
+        }
     }
 }

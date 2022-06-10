@@ -1,8 +1,7 @@
 package com.UTN.TP.Service.Impl;
 
 import com.UTN.TP.Entity.Treatment;
-import com.UTN.TP.Mappers.TreatmentMapper;
-import com.UTN.TP.Model.ActionModel;
+import com.UTN.TP.Mapper.TreatmentMapper;
 import com.UTN.TP.Model.TreatmentModel;
 import com.UTN.TP.Repository.TreatmentRepository;
 import com.UTN.TP.Service.TreatmentService;
@@ -12,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service("TreatmentServiceImpl")
 public class TreatmentServiceImpl implements TreatmentService {
@@ -33,5 +33,13 @@ public class TreatmentServiceImpl implements TreatmentService {
         List<TreatmentModel> treatmentModels = new ArrayList<>();
         treatments.forEach(x -> treatmentModels.add(INSTANCE.toModel(x)));
         return treatmentModels;
+    }
+
+    @Override
+    public TreatmentModel findById(String id) {
+        Optional<Treatment> opt = treatmentRepository.findById(id);
+        if (opt.isPresent()){
+            return INSTANCE.toModel(opt.get());
+        }else return new TreatmentModel();
     }
 }

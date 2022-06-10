@@ -1,4 +1,4 @@
-package com.UTN.TP.Mappers;
+package com.UTN.TP.Mapper;
 
 import com.UTN.TP.Entity.Doctor;
 import com.UTN.TP.Model.DoctorModel;

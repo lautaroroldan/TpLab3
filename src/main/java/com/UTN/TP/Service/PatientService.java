@@ -7,4 +7,5 @@ import java.util.List;
 public interface PatientService {
     PatientModel addPatient(PatientModel patientModel);
     List<PatientModel> getPatientList();
+    PatientModel findById(String id);
 }

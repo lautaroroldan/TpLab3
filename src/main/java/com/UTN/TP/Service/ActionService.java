@@ -11,6 +11,7 @@ public interface ActionService {
 
     ActionModel addAction(ActionModel actionModel);
     List<ActionModel> getActionList();
+    ActionModel findById(String id);
 
 
 }

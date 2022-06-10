@@ -9,7 +9,7 @@ import lombok.*;
 @NoArgsConstructor
 public class DiseaseModel {
     private String id;
-    private Integer diseaseId;
+    private int diseaseId;
     private String name;
     private TreatmentModel treatment;
 }

@@ -1,8 +1,6 @@
-package com.UTN.TP.Mappers;
+package com.UTN.TP.Mapper;
 
-import com.UTN.TP.Entity.Disease;
 import com.UTN.TP.Entity.Treatment;
-import com.UTN.TP.Model.DiseaseModel;
 import com.UTN.TP.Model.TreatmentModel;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;

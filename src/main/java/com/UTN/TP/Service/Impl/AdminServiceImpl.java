@@ -1,7 +1,7 @@
 package com.UTN.TP.Service.Impl;
 
 import com.UTN.TP.Entity.Admin;
-import com.UTN.TP.Mappers.AdminMapper;
+import com.UTN.TP.Mapper.AdminMapper;
 import com.UTN.TP.Model.AdminModel;
 import com.UTN.TP.Repository.AdminRepository;
 import com.UTN.TP.Service.AdminService;

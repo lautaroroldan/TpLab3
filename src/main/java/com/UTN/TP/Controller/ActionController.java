@@ -60,7 +60,6 @@ public class ActionController {
 
         actionModel.setActionId(nextSequenceService.getNextSequenceAction("customSequence"));
 
-        //LOG.info("el id del action es: " + actionModel.getId().toString());
 
         RedirectView redirectView = new RedirectView("/actionController/findAll");
         actionService.addAction(actionModel);

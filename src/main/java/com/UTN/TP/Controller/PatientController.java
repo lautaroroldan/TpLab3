@@ -1,20 +1,16 @@
 package com.UTN.TP.Controller;
 
-import com.UTN.TP.Mappers.DiseaseMapper;
 import com.UTN.TP.Model.DiseaseModel;
 import com.UTN.TP.Model.PatientModel;
 import com.UTN.TP.Service.DiseaseService;
+import com.UTN.TP.Service.NextSequenceService;
 import com.UTN.TP.Service.PatientService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
-
-import javax.websocket.server.PathParam;
-import java.util.List;
 
 @RestController
 @RequestMapping("/patientController")
@@ -28,32 +24,28 @@ public class PatientController {
     @Autowired
     DiseaseService diseaseService;
 
+    @Autowired
+    NextSequenceService nextSequenceService;
+
     @GetMapping("/addPatient")
-    ModelAndView add(){
+    public ModelAndView add(){
         ModelAndView modelAndView = new ModelAndView("addPatient");
 
-        Integer i = new Integer(-1);
 
         modelAndView.addObject("patient",new PatientModel());
-        modelAndView.addObject("identifier",i);
-
-
+        modelAndView.addObject("diseaseModel",new DiseaseModel());
         modelAndView.addObject("diseaseList",diseaseService.getDiseaseList());
         return modelAndView;
     }
 
     @PostMapping("/add")
-    public RedirectView addPatient(@ModelAttribute("patient")PatientModel patientModel,@ModelAttribute("identifier")Integer i){
+    public RedirectView addPatient(@ModelAttribute("patient")PatientModel patientModel,@ModelAttribute("diseaseModel")DiseaseModel diseaseModel){
 
 
         LOG.info("ya pase por el toString :");
-
+        patientModel.setPatientId(nextSequenceService.getNextSequencePatient("customSequence"));
         RedirectView redirectView = new RedirectView("/patientController/findAll");
-
-        DiseaseModel diseaseModel = new DiseaseModel();
-        diseaseModel = diseaseService.findById(i);
-
-        patientModel.setDisease(diseaseModel);
+        patientModel.setDisease(diseaseService.findById(diseaseModel.getDiseaseId()));
         patientService.addPatient(patientModel);
 
         return redirectView;
