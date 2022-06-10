@@ -9,9 +9,11 @@ import com.UTN.TP.Service.DiseaseService;
 import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -36,5 +38,19 @@ public class DiseaseServiceImpl implements DiseaseService {
         diseases.forEach(x -> diseaseModels.add(INSTANCE.toModel(x)));
 
         return diseaseModels;
+    }
+
+    @Override
+    public DiseaseModel findById(Integer id) {
+
+        String pase = Integer.toString(id);
+        Optional<Disease> optionalDisease = diseaseRepository.findById(pase);
+
+        if(optionalDisease.isPresent()){
+            return INSTANCE.toModel(optionalDisease.get());
+        }else{
+            System.out.println("Entre al else");
+            return new DiseaseModel();
+        }
     }
 }

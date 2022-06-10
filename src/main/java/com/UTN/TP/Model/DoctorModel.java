@@ -11,7 +11,10 @@ import java.util.HashMap;
 @AllArgsConstructor
 @NoArgsConstructor
 public class DoctorModel extends PersonModel{
-    private long id;
-    ///Todo resivar sobre el Hashmap
+
+
+    private int doctorId;
+
+    ///Todo revisar sobre el Hashmap
     private HashMap<String,PatientModel> patients;
 }

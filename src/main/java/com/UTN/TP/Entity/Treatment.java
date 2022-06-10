@@ -17,13 +17,15 @@ import java.util.List;
 public class Treatment {
 
     @Id
-    private long id;
+    private String id;
+
+    private int treatmentId;
 
     private String name;
-
-    private List<Action> actionList;
 
     private Date init;
 
     private Date end;
+
+    private List<Action> actionList;
 }

@@ -8,7 +8,8 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class DiseaseModel {
-    private long id;
+    private String id;
+    private Integer diseaseId;
     private String name;
     private TreatmentModel treatment;
 }

@@ -12,7 +12,8 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class TreatmentModel {
-    private long id;
+    private String id;
+    private int treatmentId;
     private String name;
     private List<ActionModel> actionList;
     private Date init;

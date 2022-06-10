@@ -2,6 +2,7 @@ package com.UTN.TP.Service.Impl;
 
 
 import com.UTN.TP.Entity.Action;
+import com.UTN.TP.Entity.Disease;
 import com.UTN.TP.Mappers.ActionMapper;
 import com.UTN.TP.Model.ActionModel;
 import com.UTN.TP.Repository.ActionRepository;

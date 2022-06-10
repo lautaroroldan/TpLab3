@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service("PatientServiceImpl")
 public class PatientServiceImpl implements PatientService {
@@ -32,5 +33,12 @@ public class PatientServiceImpl implements PatientService {
         List<Patient> patients = patientRepository.findAll();
         patients.forEach(x->patientModels.add(INSTANCE.toModel(x)));
         return patientModels;
+    }
+
+    //TODO Ojo con esto, ver que devuelve un Patient y no un PatientModel
+    public Optional<Patient> findById(String id){
+
+        return patientRepository.findById(id);
+
     }
 }

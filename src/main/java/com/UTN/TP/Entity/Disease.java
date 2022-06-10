@@ -15,7 +15,9 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Disease {
 
     @Id
-    private long id;
+    private String id;
+
+    private Integer diseaseId;
 
     private String name;
 

@@ -15,14 +15,13 @@ import java.util.Date;
 @Document(value = "patient")
 public class Patient extends Person{
 
-    @Id
-    private long id;
+    private int patientId;
 
     private long dni;
 
     private Date entry;
 
-    private Disease disease;
-
     private boolean serve;
+
+    private Disease disease;
 }

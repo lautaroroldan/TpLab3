@@ -6,5 +6,6 @@ import org.springframework.stereotype.Repository;
 
 
 @Repository
-public interface ActionRepository  extends MongoRepository<Action,Long> {
+public interface ActionRepository  extends MongoRepository<Action,String> {
+
 }

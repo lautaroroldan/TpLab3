@@ -9,4 +9,6 @@ import java.util.List;
 public interface DiseaseService {
     DiseaseModel addDisease(DiseaseModel diseaseModel);
     List<DiseaseModel> getDiseaseList();
+    DiseaseModel findById(Integer id);
+
 }

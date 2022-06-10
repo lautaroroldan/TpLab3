@@ -7,6 +7,7 @@ import org.mapstruct.factory.Mappers;
 
 @Mapper
 public interface ActionMapper {
+
     ActionMapper INSTANCE = Mappers.getMapper(ActionMapper.class);
 
     Action toEntity(ActionModel actionModel);

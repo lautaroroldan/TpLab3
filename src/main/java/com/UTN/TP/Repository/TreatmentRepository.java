@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 
 @Repository
-public interface TreatmentRepository extends MongoRepository<Treatment,Long > {
+public interface TreatmentRepository extends MongoRepository<Treatment,String > {
 }

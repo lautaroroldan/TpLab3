@@ -8,5 +8,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AdminModel extends PersonModel{
-    private long id;
+
+    private int adminId;
+
 }

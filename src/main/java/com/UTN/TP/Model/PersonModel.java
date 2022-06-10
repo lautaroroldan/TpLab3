@@ -9,7 +9,8 @@ import lombok.*;
 @NoArgsConstructor
 public class PersonModel {
 
-    private long id;
+    private String id;
+    private int personId;
     private String name;
     private String lastname;
 }

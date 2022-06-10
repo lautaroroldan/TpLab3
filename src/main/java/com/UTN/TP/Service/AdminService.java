@@ -7,4 +7,5 @@ import java.util.List;
 public interface AdminService {
     AdminModel addAdmin(AdminModel adminModel);
     List<AdminModel> getAdminList();
+
 }

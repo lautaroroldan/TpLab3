@@ -2,6 +2,7 @@ package com.UTN.TP.Entity;
 
 import lombok.*;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
@@ -13,8 +14,11 @@ import java.util.Date;
 @NoArgsConstructor
 @Document(value = "action")
 public class Action {
+
     @Id
-    private long id;
+    private String id;
+
+    private int actionId;
 
     private String nameAction;
 
@@ -22,5 +26,5 @@ public class Action {
 
     private Date end;
 
-    private boolean doIt;
+   private boolean doIt;
 }

@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 import java.io.Serializable;
 
 @Repository
-public interface DoctorRepository extends MongoRepository<Doctor, Long> {
+public interface DoctorRepository extends MongoRepository<Doctor, String> {
 }
