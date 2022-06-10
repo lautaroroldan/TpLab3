@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service("DoctorServiceImpl")
 public class DoctorServiceImpl implements DoctorService {
@@ -32,5 +33,14 @@ public class DoctorServiceImpl implements DoctorService {
         List<Doctor> doctorList = doctorRepository.findAll();
         doctorList.forEach(x -> doctorModels.add(INSTANCE.toModel(x)));
         return doctorModels;
+    }
+
+    @Override
+    public DoctorModel findById(String id) {
+        Optional<Doctor> opt = doctorRepository.findById(id);
+        if (opt.isPresent()){
+            return INSTANCE.toModel(opt.get());
+        }
+        return new DoctorModel();
     }
 }

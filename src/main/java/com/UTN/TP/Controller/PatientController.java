@@ -42,7 +42,6 @@ public class PatientController {
     public RedirectView addPatient(@ModelAttribute("patient")PatientModel patientModel,@ModelAttribute("diseaseModel")DiseaseModel diseaseModel){
 
 
-        LOG.info("ya pase por el toString :");
         patientModel.setPatientId(nextSequenceService.getNextSequencePatient("customSequence"));
         RedirectView redirectView = new RedirectView("/patientController/findAll");
         patientModel.setDisease(diseaseService.findById(diseaseModel.getDiseaseId()));
