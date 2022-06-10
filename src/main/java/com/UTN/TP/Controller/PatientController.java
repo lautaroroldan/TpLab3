@@ -44,7 +44,7 @@ public class PatientController {
 
         patientModel.setPatientId(nextSequenceService.getNextSequencePatient("customSequence"));
         RedirectView redirectView = new RedirectView("/patientController/findAll");
-        patientModel.setDisease(diseaseService.findById(diseaseModel.getDiseaseId()));
+        patientModel.setDisease(diseaseService.findById(diseaseModel.getId()));
         patientService.addPatient(patientModel);
 
         return redirectView;
