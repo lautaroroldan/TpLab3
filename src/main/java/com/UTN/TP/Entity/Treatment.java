@@ -19,8 +19,6 @@ public class Treatment {
     @Id
     private String id;
 
-    private int treatmentId;
-
     private String name;
 
     private Date init;

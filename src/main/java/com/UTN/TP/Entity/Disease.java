@@ -17,8 +17,6 @@ public class Disease {
     @Id
     private String id;
 
-    private int diseaseId;
-
     private String name;
 
     private Treatment treatment;

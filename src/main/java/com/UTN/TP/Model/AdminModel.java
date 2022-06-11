@@ -9,6 +9,6 @@ import lombok.*;
 @NoArgsConstructor
 public class AdminModel extends PersonModel{
 
-    private int adminId;
+    private String adminRol;
 
 }
