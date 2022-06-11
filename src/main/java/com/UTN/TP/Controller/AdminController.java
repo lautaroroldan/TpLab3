@@ -15,8 +15,7 @@ public class AdminController {
     @Autowired
     AdminService adminService;
 
-    @Autowired
-    NextSequenceService nextSequenceService;
+
 
 
     @GetMapping("/addAdmin")
@@ -29,9 +28,6 @@ public class AdminController {
 
     @PostMapping("/add")
     public RedirectView addAdmin(@ModelAttribute("admin") AdminModel adminModel){
-
-
-        adminModel.setAdminId(nextSequenceService.getNextSequenceAdmin("customSequence"));
 
 
         RedirectView redirectView = new RedirectView("/adminController/addAdmin");

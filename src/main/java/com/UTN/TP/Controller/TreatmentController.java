@@ -31,8 +31,6 @@ public class TreatmentController {
     @Autowired
     ActionService actionService;
 
-    @Autowired
-    NextSequenceService nextSequenceService;
 
     @GetMapping("/addTreatment")
     public ModelAndView add(){

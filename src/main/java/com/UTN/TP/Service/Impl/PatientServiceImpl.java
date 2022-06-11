@@ -2,6 +2,7 @@ package com.UTN.TP.Service.Impl;
 
 import com.UTN.TP.Entity.Patient;
 import com.UTN.TP.Mapper.PatientMapper;
+import com.UTN.TP.Model.ActionModel;
 import com.UTN.TP.Model.PatientModel;
 import com.UTN.TP.Repository.PatientRepository;
 import com.UTN.TP.Service.PatientService;
@@ -40,5 +41,11 @@ public class PatientServiceImpl implements PatientService {
         Optional<Patient> opt = patientRepository.findById(id);
         return INSTANCE.toModel(opt.get());
 
+    }
+
+    @Override
+    public PatientModel addIncompleteTask(String id,ActionModel actionModel) {
+
+        return null;
     }
 }

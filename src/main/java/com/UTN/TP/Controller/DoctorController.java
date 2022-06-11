@@ -23,8 +23,7 @@ public class DoctorController {
     @Autowired
     PatientService patientService;
 
-    @Autowired
-    NextSequenceService nextSequenceService;
+
 
     @GetMapping("/addDoctor")
     public ModelAndView add(){

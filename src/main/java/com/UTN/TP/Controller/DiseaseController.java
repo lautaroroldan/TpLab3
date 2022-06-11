@@ -26,8 +26,7 @@ public class DiseaseController {
     @Autowired
     TreatmentService treatmentService;
 
-    @Autowired
-    NextSequenceService nextSequenceService;
+
 
     @GetMapping("/addDisease")
     public ModelAndView add(){

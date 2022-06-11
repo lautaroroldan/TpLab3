@@ -21,9 +21,6 @@ public class ActionController {
     @Autowired
     ActionService actionService;
 
-    @Autowired
-    NextSequenceService nextSequenceService;
-
     @PostMapping("/addActionJson")
     public void addActionJson(@RequestBody ActionModel actionModel){
 
