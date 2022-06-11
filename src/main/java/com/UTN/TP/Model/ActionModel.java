@@ -11,7 +11,6 @@ import java.util.Date;
 @NoArgsConstructor
 public class ActionModel {
     private String id;
-    private int actionId;
     private String nameAction;
     private Date init;
     private Date end;

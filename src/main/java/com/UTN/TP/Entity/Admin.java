@@ -15,7 +15,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Admin extends Person{
 
 
-    private int adminId;
+    private String adminRol;
 
 
 }

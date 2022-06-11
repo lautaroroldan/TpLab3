@@ -15,8 +15,6 @@ import java.util.Date;
 @Document(value = "patient")
 public class Patient extends Person{
 
-    private int patientId;
-
     private long dni;
 
     private Date entry;

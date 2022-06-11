@@ -11,16 +11,7 @@ import java.util.Date;
 @NoArgsConstructor
 public class PatientModel extends PersonModel{
 
-    private int patientId;
     private long dni;
-
-    public int getPatientId() {
-        return patientId;
-    }
-
-    public void setPatientId(int patientId) {
-        this.patientId = patientId;
-    }
 
     public long getDni() {
         return dni;

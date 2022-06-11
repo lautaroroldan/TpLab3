@@ -14,7 +14,5 @@ import java.util.HashMap;
 @Document(value = "doctor")
 public class Doctor extends Person{
 
-    private int doctorId;
-
     private HashMap<String, Patient> patients;
 }

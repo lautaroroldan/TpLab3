@@ -18,8 +18,6 @@ public class Action {
     @Id
     private String id;
 
-    private int actionId;
-
     private String nameAction;
 
     private Date init;

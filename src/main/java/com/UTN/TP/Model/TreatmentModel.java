@@ -13,7 +13,6 @@ import java.util.List;
 @NoArgsConstructor
 public class TreatmentModel {
     private String id;
-    private int treatmentId;
     private String name;
     private List<ActionModel> actionList;
     private Date init;
