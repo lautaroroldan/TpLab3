@@ -13,11 +13,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(value = "person")
 public class Person {
 
-    @Id
-    private String id;
-
-    private int personId;
-
     private String name;
 
     private String lastname;

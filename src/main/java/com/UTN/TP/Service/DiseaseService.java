@@ -10,5 +10,4 @@ public interface DiseaseService {
     DiseaseModel addDisease(DiseaseModel diseaseModel);
     List<DiseaseModel> getDiseaseList();
     DiseaseModel findById(String id);
-
 }

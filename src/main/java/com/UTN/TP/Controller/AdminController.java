@@ -50,7 +50,6 @@ public class AdminController {
 
         ModelAndView modelAndView = new ModelAndView("listAction");
         modelAndView.addObject("listAction1", adminService.getAdminList());
-
         return modelAndView;
     }
 

@@ -31,7 +31,6 @@ public class PatientController {
     public ModelAndView add(){
         ModelAndView modelAndView = new ModelAndView("addPatient");
 
-
         modelAndView.addObject("patient",new PatientModel());
         modelAndView.addObject("diseaseModel",new DiseaseModel());
         modelAndView.addObject("diseaseList",diseaseService.getDiseaseList());
