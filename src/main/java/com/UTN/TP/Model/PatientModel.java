@@ -12,6 +12,7 @@ import java.util.List;
 @NoArgsConstructor
 public class PatientModel extends PersonModel{
 
+    private String id;
     private long dni;
     private Date entry;
     private DiseaseModel disease;
@@ -56,5 +57,13 @@ public class PatientModel extends PersonModel{
 
     public void setIncompleteTaskList(List<ActionModel> incompleteTaskList) {
         this.incompleteTaskList = incompleteTaskList;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

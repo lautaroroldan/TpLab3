@@ -6,8 +6,14 @@ import com.UTN.TP.Model.ActionModel;
 import com.UTN.TP.Model.PatientModel;
 import com.UTN.TP.Repository.PatientRepository;
 import com.UTN.TP.Service.PatientService;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoOperations;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -20,7 +26,12 @@ public class PatientServiceImpl implements PatientService {
     @Autowired
     PatientRepository patientRepository;
 
+    @Autowired
+    MongoTemplate mongoTemplate;
+
     PatientMapper INSTANCE = Mappers.getMapper(PatientMapper.class);
+
+    private static final Log LOG = LogFactory.getLog(PatientServiceImpl.class);
 
     @Override
     public PatientModel addPatient(PatientModel patientModel) {
@@ -48,4 +59,5 @@ public class PatientServiceImpl implements PatientService {
 
         return null;
     }
+
 }

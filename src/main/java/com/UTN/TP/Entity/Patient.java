@@ -16,6 +16,9 @@ import java.util.List;
 @Document(value = "patient")
 public class Patient extends Person{
 
+    @Id
+    private String id;
+
     private long dni;
 
     private Date entry;

@@ -48,6 +48,12 @@ public class DoctorController {
         return modelAndView;
     }
 
+    @GetMapping("/{id}")
+    public ModelAndView viewPatients(@PathVariable String id){
+        ModelAndView mav = new ModelAndView("patientListDoctor");
+        mav.addObject("doctor", doctorService.findById(id));
+        return mav;
+    }
 
 
 }

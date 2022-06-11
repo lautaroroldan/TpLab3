@@ -1,7 +1,5 @@
 package com.UTN.TP.Cron;
 
-import com.UTN.TP.Entity.Patient;
-import com.UTN.TP.GlobalVariant.LocalDate;
 import com.UTN.TP.Model.ActionModel;
 import com.UTN.TP.Model.PatientModel;
 import com.UTN.TP.Service.PatientService;
@@ -22,7 +20,7 @@ public class TutorialSchedule {
 
     private final static Log LOG = LogFactory.getLog(TutorialSchedule.class);
 
-    @Scheduled(cron = " * * * * * * ")
+    @Scheduled(cron = "  0 0/5 * * * ? ")
     public void scheduleUsingExpression(){
         LocalDateTime localDateTime = LocalDateTime.now();
         LOG.info(localDateTime);
@@ -39,6 +37,24 @@ public class TutorialSchedule {
                 incompleteTask.add(actionModels.get(size));
             }
         }
+    }
+
+    @Scheduled(cron = "@daily")
+    ///  0 0/5 * * * ? cada 5 min
+    ///  */5 * * * * * cada 5 seg
+    public void resetdoItTaks(){
+        LOG.info("Traigo la lista del repo");
+        List<PatientModel> patientModels = patientService.getPatientList();
+        LOG.info(" la lista es " + patientModels);
+        patientModels.forEach(x -> {
+            x.getDisease().getTreatment().getActionList().forEach( y -> {
+                LOG.info("cambio " + y.isDoIt() + "por false");
+                y.setDoIt(false);
+            });
+            LOG.info("El patient a guardar es " + x);
+            patientService.addPatient(x);
+        });
+        LOG.info("termino todo el ciclo");
     }
 
 
