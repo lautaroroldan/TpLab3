@@ -1,11 +1,8 @@
 package com.UTN.TP.Controller;
 
 import com.UTN.TP.Model.ActionModel;
-import com.UTN.TP.Model.DiseaseModel;
-import com.UTN.TP.Model.PatientModel;
 import com.UTN.TP.Model.TreatmentModel;
 import com.UTN.TP.Service.ActionService;
-import com.UTN.TP.Service.NextSequenceService;
 import com.UTN.TP.Service.TreatmentService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -48,8 +45,6 @@ public class TreatmentController {
 
     @PostMapping("/add")
     public RedirectView addTreatment(@ModelAttribute("treatment") TreatmentModel treatmentModel, @ModelAttribute("actionModel") ActionModel actionModel){
-
-        treatmentModel.setTreatmentId(nextSequenceService.getNextSequenceTreatment("customSequence"));
         RedirectView redirectView = new RedirectView("/treatmentController/findAll");
 
         ActionModel actionModel1 = actionService.findById(actionModel.getId());

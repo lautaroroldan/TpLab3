@@ -36,7 +36,6 @@ public class DoctorController {
 
     @PostMapping("/add")
     public RedirectView addDoctor(@ModelAttribute("doctor")DoctorModel doctorModel){
-        doctorModel.setDoctorId(nextSequenceService.getNextSequenceDoctor("customSequence"));
         RedirectView redirectView = new RedirectView("/doctorController/findAll");
         doctorService.addDoctor(doctorModel);
         return redirectView;

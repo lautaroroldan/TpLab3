@@ -3,7 +3,6 @@ package com.UTN.TP.Controller;
 import com.UTN.TP.Model.DiseaseModel;
 import com.UTN.TP.Model.PatientModel;
 import com.UTN.TP.Service.DiseaseService;
-import com.UTN.TP.Service.NextSequenceService;
 import com.UTN.TP.Service.PatientService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -40,8 +39,6 @@ public class PatientController {
     @PostMapping("/add")
     public RedirectView addPatient(@ModelAttribute("patient")PatientModel patientModel,@ModelAttribute("diseaseModel")DiseaseModel diseaseModel){
 
-
-        patientModel.setPatientId(nextSequenceService.getNextSequencePatient("customSequence"));
         RedirectView redirectView = new RedirectView("/patientController/findAll");
         patientModel.setDisease(diseaseService.findById(diseaseModel.getId()));
         patientService.addPatient(patientModel);

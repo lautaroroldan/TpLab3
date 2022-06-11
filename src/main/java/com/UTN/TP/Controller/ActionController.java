@@ -2,21 +2,15 @@ package com.UTN.TP.Controller;
 
 
 import com.UTN.TP.Model.ActionModel;
-import com.UTN.TP.Model.PatientModel;
 import com.UTN.TP.Service.ActionService;
-import com.UTN.TP.Service.NextSequenceService;
-import com.UTN.TP.Service.PatientService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.List;
-import java.util.logging.Logger;
 
 @RestController
 @RequestMapping("/actionController")
@@ -56,10 +50,6 @@ public class ActionController {
 
     @PostMapping("/add")
     public RedirectView addAction(@ModelAttribute("action")ActionModel actionModel){
-
-
-        actionModel.setActionId(nextSequenceService.getNextSequenceAction("customSequence"));
-
 
         RedirectView redirectView = new RedirectView("/actionController/findAll");
         actionService.addAction(actionModel);
