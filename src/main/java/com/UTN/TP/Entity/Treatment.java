@@ -17,7 +17,7 @@ import java.util.List;
 public class Treatment {
 
     @Id
-    private String id;
+    private String idTreatment;
 
     private String name;
 

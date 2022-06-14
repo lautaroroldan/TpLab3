@@ -12,7 +12,7 @@ import java.util.HashMap;
 @NoArgsConstructor
 public class DoctorModel extends PersonModel{
 
-    private String id;
+    private String idDoctor;
     ///Todo revisar sobre el Hashmap
     private HashMap<String,PatientModel> patients;
 }

@@ -42,7 +42,7 @@ public class PatientController {
     public RedirectView addPatient(@ModelAttribute("patient")PatientModel patientModel,@ModelAttribute("diseaseModel")DiseaseModel diseaseModel){
 
         RedirectView redirectView = new RedirectView("/patientController/findAll");
-        patientModel.setDisease(diseaseService.findById(diseaseModel.getId()));
+        patientModel.setDisease(diseaseService.findById(diseaseModel.getIdDisease()));
         patientService.addPatient(patientModel);
 
         return redirectView;

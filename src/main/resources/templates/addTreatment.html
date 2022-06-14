@@ -17,6 +17,8 @@
                         <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Add a Treatment</h3>
                         <form th:action="@{/treatmentController/add}" th:object="${treatment} " method="post">
 
+                            <input type="hidden" th:field="${treatment.idTreatment}" />
+
                             <div class="row">
                                 <div class="col-md-6 mb-4">
 

@@ -17,6 +17,8 @@
                         <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Agregar un paciente</h3>
                         <form th:action="@{/patientController/add}" th:object="${patient} " method="post">
 
+                            <input type="hidden" th:field="${patient.idPatient}" />
+
                             <div class="row">
                                 <div class="col-md-6 mb-4">
 

@@ -6,13 +6,14 @@ import lombok.*;
 import java.util.Date;
 import java.util.List;
 
-
+@Setter
+@Getter
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
 public class PatientModel extends PersonModel{
 
-    private String idP;
+    private String idPatient;
     private long dni;
     private Date entry;
     private DiseaseModel disease;
@@ -59,11 +60,5 @@ public class PatientModel extends PersonModel{
         this.incompleteTaskList = incompleteTaskList;
     }
 
-    public String getIdP() {
-        return idP;
-    }
 
-    public void setIdP(String idP) {
-        this.idP = idP;
-    }
 }

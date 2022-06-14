@@ -15,6 +15,6 @@ import java.util.HashMap;
 public class Doctor extends Person{
 
     @Id
-    private String id;
+    private String idDoctor;
     private HashMap<String, Patient> patients;
 }

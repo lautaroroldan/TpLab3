@@ -17,6 +17,9 @@
                         <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Agregar una accion</h3>
                         <form th:action="@{/actionController/add}" th:object="${action} " method="post">
 
+
+                            <input type="hidden" th:field="${action.idAction}" />
+
                             <div class="row">
                                 <div class="col-md-6 mb-4">
 

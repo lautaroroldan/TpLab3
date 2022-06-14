@@ -17,6 +17,8 @@
                         <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Agregar un admin</h3>
                         <form th:action="@{/adminController/add}" th:object="${admin} " method="post">
 
+                            <input type="hidden" th:field="${admin.idAdmin}" />
+
                             <div class="row">
                                 <div class="col-md-6 mb-4">
 
