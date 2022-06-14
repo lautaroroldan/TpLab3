@@ -76,12 +76,9 @@ public class AdminController {
     public RedirectView addPatient(@ModelAttribute("doctor")DoctorModel doctorModel, @ModelAttribute("patient")PatientModel idPatient){
         LOG.info("ID DOCTOR : "+ doctorModel.getIdDoctor());
         DoctorModel doc = doctorService.findById(doctorModel.getIdDoctor());
-        LOG.info(doc.toString());
         LOG.info("El id del paciente es "+ idPatient.getIdPatient());
         PatientModel patient = patientService.findById(idPatient.getIdPatient());
-//        HashMap<String,PatientModel> hashMap = doc.getPatients();
-//        hashMap.put(patient.getIdP(),patient);
-        doc.setPatients(hashMap);
+        doc.getPatients().put(patient.getIdPatient(),patient);
         doctorService.addDoctor(doc);
         return new RedirectView("/doctorController/findAll");
     }

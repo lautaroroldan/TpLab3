@@ -27,28 +27,17 @@ public class TutorialSchedule {
     }
 
     @Scheduled(cron = "@daily")
-    public void checkingTask(){
-        List<PatientModel> patientModels = patientService.getPatientList();
-        for (PatientModel patientModel : patientModels){
-            List<ActionModel> actionModels = patientModel.getDisease().getTreatment().getActionList();
-            int size = actionModels.size();
-            if (actionModels.get(size).isDoIt() == false){
-                List<ActionModel> incompleteTask = patientModel.getIncompleteTaskList();
-                incompleteTask.add(actionModels.get(size));
-            }
-        }
-    }
-
-    @Scheduled(cron = "@daily")
     ///  0 0/5 * * * ? cada 5 min
     ///  */5 * * * * * cada 5 seg
-    public void resetdoItTaks(){
+    public void resetdoItTaksAndAddToIncompleteTask(){
         LOG.info("Traigo la lista del repo");
         List<PatientModel> patientModels = patientService.getPatientList();
-        LOG.info(" la lista es " + patientModels);
         patientModels.forEach(x -> {
             x.getDisease().getTreatment().getActionList().forEach( y -> {
-                LOG.info("cambio " + y.isDoIt() + "por false");
+                if (!y.isDoIt()){
+                    x.getIncompleteTaskList().add(y);
+                }
+                LOG.info("cambio el " + y.isDoIt() + " por false");
                 y.setDoIt(false);
             });
             LOG.info("El patient a guardar es " + x);
