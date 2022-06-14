@@ -67,13 +67,18 @@ public class AdminController {
         mav.addObject("doctor",doctorService.findById(id));
         mav.addObject("patientsList",patientService.getPatientList());
         mav.addObject("patient",new PatientModel());
+        LOG.info(id + "ID : addPatientDoctor ");
+        mav.addObject("idDoctor",id);
         return mav;
     }
 
     @PostMapping("/addPatient")
-    public RedirectView addPatient(@ModelAttribute("doctor")DoctorModel doctorModel, @ModelAttribute("patient")PatientModel patientModel){
+    public RedirectView addPatient(@ModelAttribute("doctor")DoctorModel doctorModel, @ModelAttribute("patient")PatientModel idPatient,@ModelAttribute("idDoctor")String id){
         LOG.info("Dentro del AddPatient");
-        PatientModel patient = patientService.findById(patientModel.getId());
+        doctorModel.setId(id);
+        LOG.info("El id del doctor es "+ doctorModel.getId());
+        LOG.info("El id del paciente es "+ idPatient.getId());
+        PatientModel patient = patientService.findById(idPatient.getId());
         LOG.info(patient);
         if (doctorModel.getPatients()==null){
             LOG.info("El HashMap del doctor esta vacio");
@@ -81,9 +86,11 @@ public class AdminController {
             doctorModel.setPatients(hashMap);
         }
         LOG.info("Antes de guardar");
-        doctorModel.getPatients().put(patientModel.getId(),patient);
+        doctorModel.getPatients().put(patient.getId(),patient);
+        LOG.info(doctorModel.getId());
         LOG.info("Guardo al doctor modificado");
         doctorService.addDoctor(doctorModel);
+        LOG.info("El id del doctor es "+ doctorModel.getId());
         return new RedirectView("/doctorController/findAll");
     }
 

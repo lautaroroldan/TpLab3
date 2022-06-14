@@ -17,6 +17,8 @@
                         <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Agregar un paciente</h3>
                         <form th:action="@{/adminController/addPatient}" th:object="${doctor} " method="post">
 
+<!--                            <input type="hidden" th:field="${doctor.id}" />-->
+
                             <div class="row">
                                 <div class="col-md-6 mb-4">
 
@@ -51,7 +53,6 @@
                                     </select>
 
                                     <label class="form-label select-label">Select one patient</label>
-
                                 </div>
                             </div>
 

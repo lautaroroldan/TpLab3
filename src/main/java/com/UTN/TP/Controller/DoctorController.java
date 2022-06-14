@@ -36,6 +36,7 @@ public class DoctorController {
     @PostMapping("/add")
     public RedirectView addDoctor(@ModelAttribute("doctor")DoctorModel doctorModel){
         RedirectView redirectView = new RedirectView("/doctorController/findAll");
+        doctorModel.setPatients(new HashMap<>());
         doctorService.addDoctor(doctorModel);
         return redirectView;
     }
@@ -52,6 +53,13 @@ public class DoctorController {
     public ModelAndView viewPatients(@PathVariable String id){
         ModelAndView mav = new ModelAndView("patientListDoctor");
         mav.addObject("doctor", doctorService.findById(id));
+        return mav;
+    }
+
+    @GetMapping("/doctor/{id}")
+    public ModelAndView viewDoctor(@PathVariable(value = "id")String id){
+        ModelAndView mav = new ModelAndView("profileDoctor");
+        mav.addObject("doctor",doctorService.findById(id));
         return mav;
     }
 
