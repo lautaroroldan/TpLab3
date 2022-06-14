@@ -17,7 +17,7 @@ import java.util.List;
 public class Patient extends Person{
 
     @Id
-    private String id;
+    private String idP;
 
     private long dni;
 

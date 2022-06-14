@@ -65,32 +65,24 @@ public class AdminController {
     public ModelAndView addPatientDoctor(@PathVariable(value = "doctorId") String id){
         ModelAndView mav = new ModelAndView("addPatientToDoctor");
         mav.addObject("doctor",doctorService.findById(id));
+        LOG.info(doctorService.findById(id).getPatients());
         mav.addObject("patientsList",patientService.getPatientList());
         mav.addObject("patient",new PatientModel());
         LOG.info(id + "ID : addPatientDoctor ");
-        mav.addObject("idDoctor",id);
         return mav;
     }
 
     @PostMapping("/addPatient")
-    public RedirectView addPatient(@ModelAttribute("doctor")DoctorModel doctorModel, @ModelAttribute("patient")PatientModel idPatient,@ModelAttribute("idDoctor")String id){
-        LOG.info("Dentro del AddPatient");
-        doctorModel.setId(id);
-        LOG.info("El id del doctor es "+ doctorModel.getId());
-        LOG.info("El id del paciente es "+ idPatient.getId());
-        PatientModel patient = patientService.findById(idPatient.getId());
-        LOG.info(patient);
-        if (doctorModel.getPatients()==null){
-            LOG.info("El HashMap del doctor esta vacio");
-            HashMap<String,PatientModel> hashMap = new HashMap<>();
-            doctorModel.setPatients(hashMap);
-        }
-        LOG.info("Antes de guardar");
-        doctorModel.getPatients().put(patient.getId(),patient);
-        LOG.info(doctorModel.getId());
-        LOG.info("Guardo al doctor modificado");
-        doctorService.addDoctor(doctorModel);
-        LOG.info("El id del doctor es "+ doctorModel.getId());
+    public RedirectView addPatient(@ModelAttribute("doctor")DoctorModel doctorModel, @ModelAttribute("patient")PatientModel idPatient){
+        LOG.info("ID DOCTOR : "+ doctorModel.getId());
+        DoctorModel doc = doctorService.findById(doctorModel.getId());
+        LOG.info(doc.toString());
+        LOG.info("El id del paciente es "+ idPatient.getIdP());
+        PatientModel patient = patientService.findById(idPatient.getIdP());
+//        HashMap<String,PatientModel> hashMap = doc.getPatients();
+//        hashMap.put(patient.getIdP(),patient);
+        doc.setPatients(hashMap);
+        doctorService.addDoctor(doc);
         return new RedirectView("/doctorController/findAll");
     }
 
