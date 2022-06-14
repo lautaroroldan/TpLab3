@@ -16,7 +16,7 @@ import java.util.Date;
 public class Action {
 
     @Id
-    private String id;
+    private String idAction;
 
     private String nameAction;
 

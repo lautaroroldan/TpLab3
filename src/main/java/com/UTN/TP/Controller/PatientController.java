@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
+import javax.websocket.server.PathParam;
+import java.time.LocalDate;
+
 @RestController
 @RequestMapping("/patientController")
 public class PatientController {
@@ -23,8 +26,7 @@ public class PatientController {
     @Autowired
     DiseaseService diseaseService;
 
-    @Autowired
-    NextSequenceService nextSequenceService;
+
 
     @GetMapping("/addPatient")
     public ModelAndView add(){
@@ -40,7 +42,7 @@ public class PatientController {
     public RedirectView addPatient(@ModelAttribute("patient")PatientModel patientModel,@ModelAttribute("diseaseModel")DiseaseModel diseaseModel){
 
         RedirectView redirectView = new RedirectView("/patientController/findAll");
-        patientModel.setDisease(diseaseService.findById(diseaseModel.getId()));
+        patientModel.setDisease(diseaseService.findById(diseaseModel.getIdDisease()));
         patientService.addPatient(patientModel);
 
         return redirectView;
@@ -54,6 +56,14 @@ public class PatientController {
 
         return modelAndView;
     }
+
+    @GetMapping("/patient/{id}")
+    public ModelAndView viewPatient(@PathVariable("id") String id){
+        ModelAndView mav = new ModelAndView("profilePatient");
+        mav.addObject("patient", patientService.findById(id));
+        return mav;
+    }
+
 
 
 }

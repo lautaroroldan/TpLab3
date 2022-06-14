@@ -6,6 +6,8 @@ import com.UTN.TP.Model.DoctorModel;
 import com.UTN.TP.Model.PatientModel;
 import com.UTN.TP.Model.TreatmentModel;
 import com.UTN.TP.Service.*;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -23,8 +25,7 @@ public class DoctorController {
     @Autowired
     PatientService patientService;
 
-    @Autowired
-    NextSequenceService nextSequenceService;
+    private static final Log LOG = LogFactory.getLog(DoctorController.class);
 
     @GetMapping("/addDoctor")
     public ModelAndView add(){
@@ -37,6 +38,8 @@ public class DoctorController {
     @PostMapping("/add")
     public RedirectView addDoctor(@ModelAttribute("doctor")DoctorModel doctorModel){
         RedirectView redirectView = new RedirectView("/doctorController/findAll");
+        HashMap<String,PatientModel> hashMap = new HashMap<>();
+        doctorModel.setPatients(hashMap);
         doctorService.addDoctor(doctorModel);
         return redirectView;
     }
@@ -49,6 +52,20 @@ public class DoctorController {
         return modelAndView;
     }
 
+    @GetMapping("/{id}")
+    public ModelAndView viewPatients(@PathVariable String id){
+        ModelAndView mav = new ModelAndView("patientListDoctor");
+        mav.addObject("doctor", doctorService.findById(id));
+        LOG.info(doctorService.findById(id).getPatients());
+        return mav;
+    }
+
+    @GetMapping("/doctor/{id}")
+    public ModelAndView viewDoctor(@PathVariable(value = "id")String id){
+        ModelAndView mav = new ModelAndView("profileDoctor");
+        mav.addObject("doctor",doctorService.findById(id));
+        return mav;
+    }
 
 
 }

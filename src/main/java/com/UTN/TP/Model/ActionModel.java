@@ -10,7 +10,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ActionModel {
-    private String id;
+    private String idAction;
     private String nameAction;
     private Date init;
     private Date end;

@@ -8,6 +8,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -15,9 +16,14 @@ import java.util.Date;
 @Document(value = "patient")
 public class Patient extends Person{
 
+    @Id
+    private String idPatient;
+
     private long dni;
 
     private Date entry;
+
+    private List<Action> incompleteTaskList;
 
     private boolean serve;
 

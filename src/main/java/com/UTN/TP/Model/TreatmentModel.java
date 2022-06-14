@@ -12,7 +12,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class TreatmentModel {
-    private String id;
+    private String idTreatment;
     private String name;
     private List<ActionModel> actionList;
     private Date init;

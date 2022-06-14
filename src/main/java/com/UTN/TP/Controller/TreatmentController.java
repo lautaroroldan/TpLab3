@@ -31,8 +31,6 @@ public class TreatmentController {
     @Autowired
     ActionService actionService;
 
-    @Autowired
-    NextSequenceService nextSequenceService;
 
     @GetMapping("/addTreatment")
     public ModelAndView add(){
@@ -47,10 +45,10 @@ public class TreatmentController {
     public RedirectView addTreatment(@ModelAttribute("treatment") TreatmentModel treatmentModel, @ModelAttribute("actionModel") ActionModel actionModel){
         RedirectView redirectView = new RedirectView("/treatmentController/findAll");
 
-        ActionModel actionModel1 = actionService.findById(actionModel.getId());
+        ActionModel actionModel1 = actionService.findById(actionModel.getIdAction());
 
-        LOG.info(" El ID seleccionado es " + actionModel.getId());
-        LOG.info("El actionModel buscado por id es : " + actionService.findById(actionModel.getId()));
+        LOG.info(" El ID seleccionado es " + actionModel.getIdAction());
+        LOG.info("El actionModel buscado por id es : " + actionService.findById(actionModel.getIdAction()));
 
         List<ActionModel> actionModels = new ArrayList<>();
         actionModels.add(actionModel1);
