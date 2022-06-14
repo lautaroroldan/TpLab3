@@ -1,8 +1,10 @@
 package com.UTN.TP.Controller;
 
 import com.UTN.TP.Model.DiseaseModel;
+import com.UTN.TP.Model.DoctorModel;
 import com.UTN.TP.Model.PatientModel;
 import com.UTN.TP.Service.DiseaseService;
+import com.UTN.TP.Service.DoctorService;
 import com.UTN.TP.Service.PatientService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -26,27 +28,31 @@ public class PatientController {
     @Autowired
     DiseaseService diseaseService;
 
+//    @Autowired
+//    DoctorService doctorService;
+
 
 
     @GetMapping("/addPatient")
-    public ModelAndView add(){
-        ModelAndView modelAndView = new ModelAndView("addPatient");
-
-        modelAndView.addObject("patient",new PatientModel());
-        modelAndView.addObject("diseaseModel",new DiseaseModel());
-        modelAndView.addObject("diseaseList",diseaseService.getDiseaseList());
-        return modelAndView;
+    public ModelAndView addPatient(){
+        ModelAndView mav= new ModelAndView("addPatient");
+                mav.addObject("patient", new PatientModel());
+                return mav;
     }
 
     @PostMapping("/add")
-    public RedirectView addPatient(@ModelAttribute("patient")PatientModel patientModel,@ModelAttribute("diseaseModel")DiseaseModel diseaseModel){
-
-//        PatientModel patient = patientService.findById(patientModel.getIdPatient());
-        RedirectView redirectView = new RedirectView("/patientController/findAll");
-        patientModel.setDisease(diseaseService.findById(diseaseModel.getIdDisease()));
+    public RedirectView add(@ModelAttribute("patient")PatientModel patientModel){
         patientService.addPatient(patientModel);
-        return redirectView;
+        return new RedirectView("/patientController/findAll");
     }
+
+    @GetMapping("/patient/{id}")
+    public ModelAndView viewPatient(@PathVariable("id") String id){
+        ModelAndView mav = new ModelAndView("profilePatient");
+        mav.addObject("patient", patientService.findById(id));
+        return mav;
+    }
+
 
     @GetMapping("/findAll")
     public ModelAndView findAll(){
@@ -57,13 +63,14 @@ public class PatientController {
         return modelAndView;
     }
 
-    @GetMapping("/patient/{id}")
-    public ModelAndView viewPatient(@PathVariable("id") String id){
-        ModelAndView mav = new ModelAndView("profilePatient");
-        mav.addObject("patient", patientService.findById(id));
-        return mav;
-    }
 
+
+    @PostMapping("/updateServe")
+    public RedirectView updateServePatient(@ModelAttribute("idPatient")String idPatient, @ModelAttribute("idDoctor")String idDoctor){
+        PatientModel patient = patientService.findById(idPatient);
+        patient.setServe(true);
+        return new RedirectView("/doctorController/doctor/{idDoctor}");
+    }
 
 
 }

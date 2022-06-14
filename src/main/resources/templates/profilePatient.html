@@ -31,7 +31,7 @@
                   <div class="d-flex flex-column align-items-center text-center">
                     <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle" width="150">
                     <div class="mt-3">
-                      <h4 th:text="*{name}"></h4>
+                      <h4 th:text="${patient.name}"></h4>
                       <p class="text-secondary mb-1">Patient</p>
                       <p class="text-muted font-size-sm">Bay Area, San Francisco, CA</p>
                       <button class="btn btn-primary">Follow</button>
@@ -80,15 +80,15 @@
                     <div class="col-sm-3">
                       <h6 class="mb-0">DNI</h6>
                     </div>
-                    <div class="col-sm-9 text-secondary" th:text="*{dni}">
+                    <div class="col-sm-9 text-secondary" th:text="${patient.dni}">
                     </div>
                   </div>
-                  <hr>
-                  <div class="row">
-                    <div class="col-sm-3">
+                  <hr th:if="${patient.disease}">
+                  <div class="row" th:if="${patient.disease}">
+                    <div class="col-sm-3" >
                       <h6 class="mb-0">Disease</h6>
                     </div>
-                    <div class="col-sm-9 text-secondary" th:text="*{disease.name}">
+                    <div class="col-sm-9 text-secondary" th:if="${patient.disease}"  th:text="${patient.disease.name}">
                     </div>
                   </div>
                   <hr>

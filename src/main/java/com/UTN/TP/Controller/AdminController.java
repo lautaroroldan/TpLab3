@@ -2,9 +2,11 @@ package com.UTN.TP.Controller;
 
 import com.UTN.TP.Entity.Patient;
 import com.UTN.TP.Model.AdminModel;
+import com.UTN.TP.Model.DiseaseModel;
 import com.UTN.TP.Model.DoctorModel;
 import com.UTN.TP.Model.PatientModel;
 import com.UTN.TP.Service.AdminService;
+import com.UTN.TP.Service.DiseaseService;
 import com.UTN.TP.Service.DoctorService;
 import com.UTN.TP.Service.PatientService;
 import org.apache.commons.logging.Log;
@@ -30,6 +32,9 @@ public class AdminController {
     @Autowired
     PatientService patientService;
 
+    @Autowired
+    DiseaseService diseaseService;
+
     private static final Log LOG = LogFactory.getLog(AdminController.class);
 
 
@@ -43,8 +48,6 @@ public class AdminController {
 
     @PostMapping("/add")
     public RedirectView addAdmin(@ModelAttribute("admin") AdminModel adminModel){
-
-
         RedirectView redirectView = new RedirectView("/adminController/addAdmin");
         adminService.addAdmin(adminModel);
 
@@ -68,11 +71,11 @@ public class AdminController {
         LOG.info(doctorService.findById(id).getPatients());
         mav.addObject("patientsList",patientService.getPatientList());
         mav.addObject("patient",new PatientModel());
-        LOG.info(id + "ID : addPatientDoctor ");
+        LOG.info(id + "  ID : addPatientDoctor ");
         return mav;
     }
 
-    @PostMapping("/addPatient")
+    @PostMapping("/addPatientToDoctor")
     public RedirectView addPatient(@ModelAttribute("doctor")DoctorModel doctorModel, @ModelAttribute("patient")PatientModel idPatient){
         LOG.info("ID DOCTOR : "+ doctorModel.getIdDoctor());
         DoctorModel doc = doctorService.findById(doctorModel.getIdDoctor());
@@ -82,5 +85,16 @@ public class AdminController {
         doctorService.addDoctor(doc);
         return new RedirectView("/doctorController/findAll");
     }
+
+    @GetMapping("/patient/{patientId}")
+    public ModelAndView addDiseaseToPatient(@PathVariable(value = "patientId")String patientid){
+        ModelAndView modelAndView = new ModelAndView("addDiseaseToPatient");
+        modelAndView.addObject("patient",patientService.findById(patientid));
+        modelAndView.addObject("diseaseModel",new DiseaseModel());
+        modelAndView.addObject("diseaseList",diseaseService.getDiseaseList());
+        return modelAndView;
+    }
+
+
 
 }

@@ -17,7 +17,7 @@
                         <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Add new doctor</h3>
                         <form th:action="@{/doctorController/add}" th:object="${doctor} " method="post">
 
-                            <input type="hidden" th:field="${doctor.idDoctor}" />
+                            <input type="hidden" th:if="${doctor.idDoctor !=null}" th:field="${doctor.idDoctor}" />
 
                             <div class="row">
                                 <div class="col-md-6 mb-4">

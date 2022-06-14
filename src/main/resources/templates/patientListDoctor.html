@@ -72,22 +72,23 @@ h4 {
             <div class="col-sm-4"><a href="#custom-modal" class="btn btn-custom waves-effect waves-light mb-4" data-animation="fadein" data-plugin="custommodal" data-overlayspeed="200" data-overlaycolor="#36404a"><i class="mdi mdi-plus"></i> Add Member</a></div>
             <!-- end col -->
         </div>
+
         <!-- end row -->
         <div class="row" th:object="${doctor}">
-            <div class="col-lg-4">
-                <div class="text-center card-box" th:each="patient : ${doctor.patients}">
+            <div class="col-lg-4" th:each="entry, stats : ${doctor.patients}" th:with="user=${entry.value}">
+                <div class="text-center card-box" >
                     <div class="member-card pt-2 pb-2">
                         <div class="thumb-lg member-thumb mx-auto"><img src="https://bootdey.com/img/Content/avatar/avatar2.png" class="rounded-circle img-thumbnail" alt="profile-image"></div>
                         <div class="">
-                            <h4 th:text="${patient.name} + ${patient.lastname}"></h4>
-                            <p class="text-muted" th:text="${patient.disease.name}">@Founder <span>| </span><span><a href="#" class="text-pink">websitename.com</a></span></p>
+                            <h4 th:text="${user.name}  +  ' ' + ${user.lastname}"></h4>
+                            <p class="text-muted" th:if="${user.disease}" th:text="${user.disease.name}"></p>
                         </div>
                         <ul class="social-links list-inline">
                             <li class="list-inline-item"><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Facebook"><i class="fa fa-facebook"></i></a></li>
                             <li class="list-inline-item"><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Twitter"><i class="fa fa-twitter"></i></a></li>
                             <li class="list-inline-item"><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Skype"><i class="fa fa-skype"></i></a></li>
                         </ul>
-                        <button type="button" class="btn btn-primary mt-3 btn-rounded waves-effect w-md waves-light">View Profile</button>
+                        <button type="button" class="btn btn-primary mt-3 btn-rounded waves-effect w-md waves-light" ><a th:href="@{/doctorController/patient/{idDoctor}/{idPatient} (idDoctor=${doctor.idDoctor},idPatient=${entry.key})}">View Profile</a></button>
                         <div class="mt-4">
                             <div class="row">
                                 <div class="col-4">

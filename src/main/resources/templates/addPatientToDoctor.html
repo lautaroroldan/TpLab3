@@ -15,7 +15,7 @@
                 <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
                     <div class="card-body p-4 p-md-5">
                         <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Agregar un paciente</h3>
-                        <form th:action="@{/adminController/addPatient}" th:object="${doctor} " method="post">
+                        <form th:action="@{/adminController/addPatientToDoctor}" th:object="${doctor} " method="post">
 
                             <input type="hidden" th:field="${doctor.idDoctor}" />
 
@@ -42,10 +42,10 @@
                             <div class="row">
                                 <div class="col-12">
 
-                                    <select th:field="${patient.idP}" class="select form-control-lg" >
+                                    <select th:field="${patient.idPatient}" class="select form-control-lg" >
 
                                         <option th:each="paciente : ${patientsList}"
-                                                th:value ="${paciente.idP}"
+                                                th:value ="${paciente.idPatient}"
                                                 th:text="${paciente.name}"
                                                 th:selected="true"
                                         />
