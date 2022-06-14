@@ -41,6 +41,7 @@ public class DiseaseController {
     @PostMapping("/add")
     public RedirectView addDisease(@ModelAttribute("disease")DiseaseModel diseaseModel, @ModelAttribute("treatment")TreatmentModel treatmentModel){
         RedirectView redirectView = new RedirectView("/diseaseController/findAll");
+//        DiseaseModel disease = diseaseService.findById(diseaseModel.getIdDisease());
         diseaseModel.setTreatment(treatmentService.findById(treatmentModel.getIdTreatment()));
         diseaseService.addDisease(diseaseModel);
         return redirectView;

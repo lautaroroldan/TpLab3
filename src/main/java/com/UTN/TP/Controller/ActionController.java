@@ -41,7 +41,6 @@ public class ActionController {
     ModelAndView add(){
         ModelAndView modelAndView = new ModelAndView("addAction");
         modelAndView.addObject("action",new ActionModel());
-
         return modelAndView;
     }
 

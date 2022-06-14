@@ -41,10 +41,10 @@ public class PatientController {
     @PostMapping("/add")
     public RedirectView addPatient(@ModelAttribute("patient")PatientModel patientModel,@ModelAttribute("diseaseModel")DiseaseModel diseaseModel){
 
+//        PatientModel patient = patientService.findById(patientModel.getIdPatient());
         RedirectView redirectView = new RedirectView("/patientController/findAll");
         patientModel.setDisease(diseaseService.findById(diseaseModel.getIdDisease()));
         patientService.addPatient(patientModel);
-
         return redirectView;
     }
 

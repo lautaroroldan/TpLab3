@@ -10,6 +10,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -23,7 +24,7 @@ public class TutorialSchedule {
     @Scheduled(cron = "  0 0/5 * * * ? ")
     public void scheduleUsingExpression(){
         LocalDateTime localDateTime = LocalDateTime.now();
-        LOG.info(localDateTime);
+        LOG.info("LOCAL TIME : "+localDateTime);
     }
 
     @Scheduled(cron = "@daily")
@@ -35,6 +36,11 @@ public class TutorialSchedule {
         patientModels.forEach(x -> {
             x.getDisease().getTreatment().getActionList().forEach( y -> {
                 if (!y.isDoIt()){
+                    LOG.info("Entro al if METHOD y.isDoIt");
+                    if (x.getIncompleteTaskList()==null){
+                        LOG.info("Creo la lista IncompleteTask porque esta nula");
+                        x.setIncompleteTaskList(new ArrayList<>());
+                    }
                     x.getIncompleteTaskList().add(y);
                 }
                 LOG.info("cambio el " + y.isDoIt() + " por false");

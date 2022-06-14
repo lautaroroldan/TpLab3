@@ -13,6 +13,7 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @RestController
 @RequestMapping("/treatmentController")
@@ -44,20 +45,31 @@ public class TreatmentController {
     @PostMapping("/add")
     public RedirectView addTreatment(@ModelAttribute("treatment") TreatmentModel treatmentModel, @ModelAttribute("actionModel") ActionModel actionModel){
         RedirectView redirectView = new RedirectView("/treatmentController/findAll");
+        LOG.info("ID TREATMENT : " + treatmentModel.getIdTreatment());
+        ActionModel action = actionService.findById(actionModel.getIdAction());
+        LOG.info("ID ACTION SELECT : " + action.getIdAction());
 
-        ActionModel actionModel1 = actionService.findById(actionModel.getIdAction());
-
-        LOG.info(" El ID seleccionado es " + actionModel.getIdAction());
-        LOG.info("El actionModel buscado por id es : " + actionService.findById(actionModel.getIdAction()));
-
-        List<ActionModel> actionModels = new ArrayList<>();
-        actionModels.add(actionModel1);
-
-        treatmentModel.setActionList(actionModels);
+        if (treatmentModel.getIdTreatment()==null){
+            List<ActionModel> actionModels = new ArrayList<>();
+            actionModels.add(action);
+            treatmentModel.setActionList(actionModels);
+        }else{
+            TreatmentModel treatmentModel1 = treatmentService.findById(treatmentModel.getIdTreatment());
+            treatmentModel1.getActionList().add(action);
+            treatmentModel.setActionList(treatmentModel1.getActionList());
+        }
         treatmentService.addTreatment(treatmentModel);
         return redirectView;
     }
 
+    @GetMapping("/{id}")
+    public ModelAndView updateTreatment(@PathVariable("id")String id){
+        ModelAndView mav = new ModelAndView("addTreatment");
+        mav.addObject("treatment",treatmentService.findById(id));
+        mav.addObject("actionList", actionService.getActionList());
+        mav.addObject("actionModel", new ActionModel());
+        return mav;
+    }
 
 
     @GetMapping("/findAll")
