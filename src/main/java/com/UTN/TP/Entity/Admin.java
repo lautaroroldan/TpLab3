@@ -16,7 +16,6 @@ public class Admin extends Person{
 
     @Id
     private String idAdmin;
-    private String adminRol;
 
 
 }
