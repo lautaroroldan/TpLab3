@@ -158,23 +158,23 @@
                         <hr th:if="${patient.disease == null}">
                         <div class="row">
                             <div class="col-sm-3">
-                                <h6 class="mb-0">Mobile</h6>
+                                <h6 class="mb-0" >Treatment</h6>
                             </div>
-                            <div class="col-sm-9 text-secondary">
-                                (320) 380-4539
+                            <div class="col-sm-9 text-secondary" th:text="${patient.disease.treatment.name}">
+
                             </div>
                         </div>
                         <hr>
                         <div class="row">
                             <div class="col-sm-3">
-                                <h6 class="mb-0">Address</h6>
+                                <h6 class="mb-0">User or Email</h6>
                             </div>
                             <div class="col-sm-9 text-secondary">
                                 Bay Area, San Francisco, CA
                             </div>
                         </div>
                         <hr>
-                        <div class="row">
+                        <div class="row" th:if="${patient.disease == null}">
                             <div class="col-sm-12">
                                 <button type="submit" class="btn btn-info">Save</button>
                             </div>

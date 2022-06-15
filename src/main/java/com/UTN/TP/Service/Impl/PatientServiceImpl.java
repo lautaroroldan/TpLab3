@@ -60,4 +60,11 @@ public class PatientServiceImpl implements PatientService {
         return null;
     }
 
+    @Override
+    public List<PatientModel> findAllByServe(boolean choice) {
+        List<PatientModel> patientModels = new ArrayList<>();
+        patientRepository.findAllByServe(false).forEach(x-> patientModels.add(INSTANCE.toModel(x)));
+        return patientModels;
+    }
+
 }

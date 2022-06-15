@@ -10,4 +10,5 @@ public interface PatientService {
     List<PatientModel> getPatientList();
     PatientModel findById(String id);
     PatientModel addIncompleteTask(String id,ActionModel actionModel);
+    List<PatientModel> findAllByServe(boolean choice);
 }
