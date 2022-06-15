@@ -4,7 +4,9 @@ import com.UTN.TP.Entity.Patient;
 import com.UTN.TP.Mapper.PatientMapper;
 import com.UTN.TP.Model.ActionModel;
 import com.UTN.TP.Model.PatientModel;
+import com.UTN.TP.Repository.DoctorRepository;
 import com.UTN.TP.Repository.PatientRepository;
+import com.UTN.TP.Service.DoctorService;
 import com.UTN.TP.Service.PatientService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -25,9 +27,8 @@ public class PatientServiceImpl implements PatientService {
 
     @Autowired
     PatientRepository patientRepository;
-
     @Autowired
-    MongoTemplate mongoTemplate;
+    DoctorService doctorService;
 
     PatientMapper INSTANCE = Mappers.getMapper(PatientMapper.class);
 
@@ -47,7 +48,6 @@ public class PatientServiceImpl implements PatientService {
         return patientModels;
     }
 
-    //TODO Ojo con esto, ver que devuelve un Patient y no un PatientModel
     public PatientModel findById(String id){
         Optional<Patient> opt = patientRepository.findById(id);
         return INSTANCE.toModel(opt.get());
@@ -55,9 +55,9 @@ public class PatientServiceImpl implements PatientService {
     }
 
     @Override
-    public PatientModel addIncompleteTask(String id,ActionModel actionModel) {
-
-        return null;
+    public void deletePatient(String id) {
+        doctorService.deletePatient(id);
+        patientRepository.deleteById(id);
     }
 
     @Override
@@ -66,5 +66,44 @@ public class PatientServiceImpl implements PatientService {
         patientRepository.findAllByServe(false).forEach(x-> patientModels.add(INSTANCE.toModel(x)));
         return patientModels;
     }
+
+    @Override
+    public List<ActionModel> findTasksById(String id) {
+        Optional<Patient> opt = patientRepository.findById(id);
+        PatientModel patient = INSTANCE.toModel(opt.get());
+        if (patient.getDisease() != null){
+            return patient.getDisease().getTreatment().getActionList();
+        }
+        return new ArrayList<ActionModel>();
+    }
+
+    @Override
+    public List<ActionModel> findIncompleteTaskById(String id) {
+        Optional<Patient> opt = patientRepository.findById(id);
+        PatientModel patientModel = INSTANCE.toModel(opt.get());
+        List<ActionModel> tasks = patientModel.getDisease().getTreatment().getActionList();
+        List<ActionModel> incompleteTask = new ArrayList<>();
+        tasks.forEach(x -> {
+            if (!x.isDoIt()){
+                incompleteTask.add(x);
+            }
+        });
+        return incompleteTask;
+    }
+
+    @Override
+    public List<ActionModel> findCompleteTaskById(String id) {
+        Optional<Patient> opt = patientRepository.findById(id);
+        PatientModel patientModel = INSTANCE.toModel(opt.get());
+        List<ActionModel> tasks = patientModel.getDisease().getTreatment().getActionList();
+        List<ActionModel> completeTask = new ArrayList<>();
+        tasks.forEach(x -> {
+            if (x.isDoIt()){
+                completeTask.add(x);
+            }
+        });
+        return completeTask;
+    }
+
 
 }

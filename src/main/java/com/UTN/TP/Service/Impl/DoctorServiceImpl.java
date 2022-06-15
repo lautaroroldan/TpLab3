@@ -14,10 +14,7 @@ import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service("DoctorServiceImpl")
 public class DoctorServiceImpl implements DoctorService {
@@ -88,6 +85,16 @@ public class DoctorServiceImpl implements DoctorService {
         });
         LOG.info("RETURN TRUE HASHMAP " + hashMaptrue);
         return hashMaptrue;
+    }
+
+    @Override
+    public void deletePatient(String idPatient) {
+        List<Doctor> doctorList = doctorRepository.findAll();
+        doctorList.forEach(x -> {
+            LOG.info("DELETE PATIENT FROM DOCTOR");
+            x.getPatients().remove(idPatient);
+            doctorRepository.save(x);
+        });
     }
 
 }

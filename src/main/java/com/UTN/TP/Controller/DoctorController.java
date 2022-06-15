@@ -66,9 +66,9 @@ public class DoctorController {
     @GetMapping("/patient/{idDoctor}/{idPatient}")
     public ModelAndView viewPatientProfile(@PathVariable (value = "idDoctor")String idDoctor,@PathVariable(value = "idPatient")String idPatient){
         ModelAndView mav = new ModelAndView("profilePatientServe");
-        LOG.info("DOCTOR ID : "+ idDoctor.substring(0,24));
         mav.addObject("doctor", doctorService.findById(idDoctor));
         mav.addObject("patient",patientService.findById(idPatient));
+        LOG.info("PATIENT ID : "+patientService.findById(idPatient));
         mav.addObject("disease",new DiseaseModel());
         mav.addObject("diseaseList",diseaseService.getDiseaseList());
         LOG.info("DOCTOR ID : " + doctorService.findById(idDoctor));
