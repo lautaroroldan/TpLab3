@@ -15,6 +15,5 @@ public interface DoctorService {
 
     HashMap<String,PatientModel> getAllPatientsFalse(String id);
     HashMap<String,PatientModel> getAllPatientsTrue(String id);
-
     void deletePatient(String id);
 }

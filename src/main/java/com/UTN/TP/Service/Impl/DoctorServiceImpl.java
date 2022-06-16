@@ -1,7 +1,6 @@
 package com.UTN.TP.Service.Impl;
 
 import com.UTN.TP.Entity.Doctor;
-import com.UTN.TP.Entity.Patient;
 import com.UTN.TP.Mapper.DoctorMapper;
 import com.UTN.TP.Mapper.PatientMapper;
 import com.UTN.TP.Model.DoctorModel;
@@ -15,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
+import java.util.concurrent.atomic.AtomicReference;
 
 @Service("DoctorServiceImpl")
 public class DoctorServiceImpl implements DoctorService {

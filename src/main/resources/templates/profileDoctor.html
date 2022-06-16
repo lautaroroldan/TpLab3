@@ -101,11 +101,11 @@
                             </div>
                         </div>
                         <hr>
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <a class="btn btn-info " target="__blank" href="https://www.bootdey.com/snippets/view/profile-edit-data-and-skills">Edit</a>
-                            </div>
-                        </div>
+<!--                        <div class="row">-->
+<!--                            <div class="col-sm-12">-->
+<!--                                <a class="btn btn-info " >Edit</a>-->
+<!--                            </div>-->
+<!--                        </div>-->
                     </div>
                 </div>
 
@@ -116,7 +116,7 @@
                                 <h6 class="d-flex align-items-center mb-3"><i class="material-icons text-info mr-2">not</i>serve</h6>
                                 <div th:each="entry, stats : ${doctor.patients}" th:with="user=${entry.value}" >
                                     <div th:if="${user.serve == false}">
-                                        <a class="" th:href="@{/doctorController/patient/{idDoctor}/{idPatient}(idDoctor=${doctor.idDoctor},idPatient=${user.idPatient})}"><h5 class="h5" th:text="${user.name}"></h5><a/>
+                                        <a class="text-danger" th:href="@{/doctorController/patient/{idDoctor}/{idPatient}(idDoctor=${doctor.idDoctor},idPatient=${user.idPatient})}"><span class="h5 text-danger" th:text="${user.name}"></span><a/>
                                     </div>
                                 </div>
                             </div>
@@ -128,7 +128,7 @@
                                 <h6 class="d-flex align-items-center mb-3"><i class="material-icons text-info mr-2">serve</i></h6>
                                 <div th:each="entry, stats : ${doctor.patients}" th:with="user=${entry.value}" >
                                     <div th:if="${user.serve == true}">
-                                    <a class="" th:href="@{/doctorController/patient/{idDoctor}/{idPatient}(idDoctor=${doctor.idDoctor},idPatient=${user.idPatient})}"><h5 class="h5" th:text="${user.name}"></h5><a/>
+                                    <a class="" th:href="@{/doctorController/patient/{idDoctor}/{idPatient}(idDoctor=${doctor.idDoctor},idPatient=${user.idPatient})}"><span class="h5" th:text="${user.name}"></span><a/>
                                 </div>
                             </div>
                         </div>

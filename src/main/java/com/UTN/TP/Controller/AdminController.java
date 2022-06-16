@@ -83,17 +83,17 @@ public class AdminController {
         PatientModel patient = patientService.findById(idPatient.getIdPatient());
         doc.getPatients().put(patient.getIdPatient(),patient);
         doctorService.addDoctor(doc);
-        return new RedirectView("/doctorController/findAll");
+        return new RedirectView("/doctorController/doctor/" + doctorModel.getIdDoctor());
     }
 
-    @GetMapping("/patient/{patientId}")
-    public ModelAndView addDiseaseToPatient(@PathVariable(value = "patientId")String patientid){
-        ModelAndView modelAndView = new ModelAndView("addDiseaseToPatient");
-        modelAndView.addObject("patient",patientService.findById(patientid));
-        modelAndView.addObject("diseaseModel",new DiseaseModel());
-        modelAndView.addObject("diseaseList",diseaseService.getDiseaseList());
-        return modelAndView;
-    }
+//    @GetMapping("/patient/{patientId}")
+//    public ModelAndView addDiseaseToPatient(@PathVariable(value = "patientId")String patientid){
+//        ModelAndView modelAndView = new ModelAndView("addDiseaseToPatient");
+//        modelAndView.addObject("patient",patientService.findById(patientid));
+//        modelAndView.addObject("diseaseModel",new DiseaseModel());
+//        modelAndView.addObject("diseaseList",diseaseService.getDiseaseList());
+//        return modelAndView;
+//    }
 
 
 

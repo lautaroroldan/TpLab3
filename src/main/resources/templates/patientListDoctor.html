@@ -86,10 +86,10 @@
         <div class="row" th:object="${doctor}">
             <div class="row" th:each="entry, stats : ${doctor.patients}" th:with="user=${entry.value}" >
                 <div th:if="${user.serve == false}">
-                    <h4 class="h4 text-warning">NOT SERVE</h4>
                 <div class="col-10" >
                     <div >
                         <div class="text-center card-box">
+                            <h4 class="h4 text-warning">Not Serve</h4>
                             <div class="member-card pt-2 pb-2">
                                 <div class="thumb-lg member-thumb mx-auto"><img
                                         src="https://bootdey.com/img/Content/avatar/avatar2.png"
@@ -143,10 +143,10 @@
                 </div>
                 </div>
                 <div th:if="${user.serve == true}">
-                    <h4 class="h4 text-success">SERVE</h4>
                     <div class="col-10" >
-                        <div >
+                        <div>
                             <div class="text-center card-box">
+                                <h4 class="h4 text-success">Serve</h4>
                                 <div class="member-card pt-2 pb-2">
                                     <div class="thumb-lg member-thumb mx-auto"><img
                                             src="https://bootdey.com/img/Content/avatar/avatar2.png"

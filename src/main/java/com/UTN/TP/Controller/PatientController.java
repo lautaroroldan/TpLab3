@@ -37,8 +37,8 @@ public class PatientController {
     @GetMapping("/addPatient")
     public ModelAndView addPatient(){
         ModelAndView mav= new ModelAndView("addPatient");
-                mav.addObject("patient", new PatientModel());
-                return mav;
+        mav.addObject("patient", new PatientModel());
+        return mav;
     }
 
     @PostMapping("/add")
@@ -69,7 +69,7 @@ public class PatientController {
             }
         });
         patientService.addPatient(patient);
-        return new RedirectView("/patientController/findAll");
+        return new RedirectView("/patientController/patient/" + patient.getIdPatient());
     }
 
 
