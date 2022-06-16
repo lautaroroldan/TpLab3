@@ -104,7 +104,7 @@ public class DoctorController {
         LOG.info("FIND BY ID DISEASE : " + diseaseService.findById(disease.getIdDisease()));
         patientService.addPatient(patient);
         doctorService.addDoctor(doctor);
-        return new RedirectView("/doctorController/findAll");
+        return new RedirectView("/doctorController/doctor/"+doctor.getIdDoctor());
     }
 
 
