@@ -29,8 +29,8 @@ public class PatientController {
     @Autowired
     DiseaseService diseaseService;
 
-//    @Autowired
-//    DoctorService doctorService;
+    @Autowired
+    DoctorService doctorService;
 
 
 
@@ -44,7 +44,7 @@ public class PatientController {
     @PostMapping("/add")
     public RedirectView add(@ModelAttribute("patient")PatientModel patientModel){
         patientService.addPatient(patientModel);
-        return new RedirectView("/patientController/findAll");
+        return new RedirectView("/patientController/patient/" + patientService.findByDni(patientModel.getDni()).getIdPatient());
     }
 
     @GetMapping("/patient/{id}")
@@ -55,6 +55,7 @@ public class PatientController {
             mav.addObject("incompleteTask",patientService.findIncompleteTaskById(id));
             mav.addObject("completeTask",patientService.findCompleteTaskById(id));
         }
+        mav.addObject("message","No doctor reviewed your case");
         return mav;
     }
 

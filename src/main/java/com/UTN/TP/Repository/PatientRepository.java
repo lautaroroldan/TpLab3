@@ -10,4 +10,5 @@ import java.util.List;
 @Repository
 public interface PatientRepository extends MongoRepository<Patient, String> {
     List<Patient> findAllByServe(boolean choice);
+    Patient findByDni(long dni);
 }

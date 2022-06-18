@@ -1,5 +1,6 @@
 package com.UTN.TP.Service;
 
+import com.UTN.TP.Entity.Patient;
 import com.UTN.TP.Model.ActionModel;
 import com.UTN.TP.Model.PatientModel;
 
@@ -13,6 +14,7 @@ public interface PatientService {
     List<PatientModel> findAllByServe(boolean choice);
 
     List<ActionModel> findTasksById(String id);
+    PatientModel findByDni(long dni);
 
     List<ActionModel> findIncompleteTaskById(String id);
 

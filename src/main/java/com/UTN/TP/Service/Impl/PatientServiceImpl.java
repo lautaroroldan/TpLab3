@@ -78,6 +78,12 @@ public class PatientServiceImpl implements PatientService {
     }
 
     @Override
+    public PatientModel findByDni(long dni) {
+        Patient patient = patientRepository.findByDni(dni);
+        return INSTANCE.toModel(patient);
+    }
+
+    @Override
     public List<ActionModel> findIncompleteTaskById(String id) {
         Optional<Patient> opt = patientRepository.findById(id);
         PatientModel patientModel = INSTANCE.toModel(opt.get());

@@ -91,7 +91,7 @@ public class DoctorServiceImpl implements DoctorService {
     public void deletePatient(String idPatient) {
         List<Doctor> doctorList = doctorRepository.findAll();
         doctorList.forEach(x -> {
-            LOG.info("DELETE PATIENT FROM DOCTOR");
+            LOG.info("Method : deletePatient -- Searching patient");
             x.getPatients().remove(idPatient);
             doctorRepository.save(x);
         });
