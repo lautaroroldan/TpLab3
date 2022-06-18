@@ -3,6 +3,8 @@ package com.UTN.TP.Controller;
 import com.UTN.TP.Model.ActionModel;
 import com.UTN.TP.Model.TreatmentModel;
 import com.UTN.TP.Service.ActionService;
+import com.UTN.TP.Service.DoctorService;
+import com.UTN.TP.Service.PatientService;
 import com.UTN.TP.Service.TreatmentService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -32,6 +34,11 @@ public class TreatmentController {
     @Autowired
     ActionService actionService;
 
+    @Autowired
+    DoctorService doctorService;
+
+    @Autowired
+    PatientService patientService;
 
     @GetMapping("/addTreatment")
     public ModelAndView add(){
@@ -41,10 +48,9 @@ public class TreatmentController {
         mav.addObject("actionModel", new ActionModel());
         return mav;
     }
-
     @PostMapping("/add")
     public RedirectView addTreatment(@ModelAttribute("treatment") TreatmentModel treatmentModel, @ModelAttribute("actionModel") ActionModel actionModel){
-        RedirectView redirectView = new RedirectView("/treatmentController/findAll");
+
         LOG.info("ID TREATMENT : " + treatmentModel.getIdTreatment());
         ActionModel action = actionService.findById(actionModel.getIdAction());
         LOG.info("ID ACTION SELECT : " + action.getIdAction());
@@ -53,13 +59,15 @@ public class TreatmentController {
             List<ActionModel> actionModels = new ArrayList<>();
             actionModels.add(action);
             treatmentModel.setActionList(actionModels);
+            treatmentService.addTreatment(treatmentModel);
         }else{
-            TreatmentModel treatmentModel1 = treatmentService.findById(treatmentModel.getIdTreatment());
-            treatmentModel1.getActionList().add(action);
-            treatmentModel.setActionList(treatmentModel1.getActionList());
+            TreatmentModel treatment = treatmentService.findById(treatmentModel.getIdTreatment());
+            treatment.getActionList().add(action);
+            treatmentService.addTreatment(treatment);
+            doctorService.updateTreatment(treatment.getIdTreatment());
+            patientService.updateTreatment(treatment.getIdTreatment());
         }
-        treatmentService.addTreatment(treatmentModel);
-        return redirectView;
+        return new RedirectView("/treatmentController/findAll");
     }
 
     @GetMapping("/{id}")
@@ -70,7 +78,6 @@ public class TreatmentController {
         mav.addObject("actionModel", new ActionModel());
         return mav;
     }
-
 
     @GetMapping("/findAll")
     public ModelAndView findAll(){

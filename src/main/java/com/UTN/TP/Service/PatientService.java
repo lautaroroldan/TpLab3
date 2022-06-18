@@ -19,4 +19,6 @@ public interface PatientService {
     List<ActionModel> findIncompleteTaskById(String id);
 
     List<ActionModel> findCompleteTaskById(String id);
+
+    void updateTreatment(String id);
 }

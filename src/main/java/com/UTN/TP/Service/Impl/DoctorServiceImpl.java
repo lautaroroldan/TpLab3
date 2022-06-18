@@ -1,12 +1,16 @@
 package com.UTN.TP.Service.Impl;
 
 import com.UTN.TP.Entity.Doctor;
+import com.UTN.TP.Entity.Treatment;
 import com.UTN.TP.Mapper.DoctorMapper;
 import com.UTN.TP.Mapper.PatientMapper;
+import com.UTN.TP.Mapper.TreatmentMapper;
 import com.UTN.TP.Model.DoctorModel;
 import com.UTN.TP.Model.PatientModel;
 import com.UTN.TP.Repository.DoctorRepository;
 import com.UTN.TP.Service.DoctorService;
+import com.UTN.TP.Service.PatientService;
+import com.UTN.TP.Service.TreatmentService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.mapstruct.factory.Mappers;
@@ -25,6 +29,11 @@ public class DoctorServiceImpl implements DoctorService {
     DoctorMapper INSTANCE = Mappers.getMapper(DoctorMapper.class);
 
     PatientMapper INSTANCEPATIENT = Mappers.getMapper(PatientMapper.class);
+
+    TreatmentMapper INSTANCETREATMENT = Mappers.getMapper(TreatmentMapper.class);
+
+    @Autowired
+    TreatmentService treatmentService;
 
     private static final Log LOG = LogFactory.getLog(DoctorServiceImpl.class);
 
@@ -96,5 +105,22 @@ public class DoctorServiceImpl implements DoctorService {
             doctorRepository.save(x);
         });
     }
+
+    @Override
+    public void updateTreatment(String id) {
+        List<Doctor> doctorList = doctorRepository.findAll();
+        doctorList.forEach(x -> {
+            x.getPatients().forEach((k,v) ->{
+                if(v.getDisease()!=null){
+                if (Objects.equals(v.getDisease().getTreatment().getIdTreatment(), id)){
+                    LOG.info("Update Treatment for Doctors");
+                    v.getDisease().setTreatment(INSTANCETREATMENT.toEntity(treatmentService.findById(id)));
+                    doctorRepository.save(x);
+                }
+                }
+            });
+        });
+    }
+
 
 }

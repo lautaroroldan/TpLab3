@@ -2,12 +2,14 @@ package com.UTN.TP.Service.Impl;
 
 import com.UTN.TP.Entity.Patient;
 import com.UTN.TP.Mapper.PatientMapper;
+import com.UTN.TP.Mapper.TreatmentMapper;
 import com.UTN.TP.Model.ActionModel;
 import com.UTN.TP.Model.PatientModel;
 import com.UTN.TP.Repository.DoctorRepository;
 import com.UTN.TP.Repository.PatientRepository;
 import com.UTN.TP.Service.DoctorService;
 import com.UTN.TP.Service.PatientService;
+import com.UTN.TP.Service.TreatmentService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.mapstruct.factory.Mappers;
@@ -20,6 +22,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service("PatientServiceImpl")
@@ -30,6 +33,10 @@ public class PatientServiceImpl implements PatientService {
     @Autowired
     DoctorService doctorService;
 
+    @Autowired
+    TreatmentService treatmentService;
+
+    TreatmentMapper INSTANCETREATMENT = Mappers.getMapper(TreatmentMapper.class);
     PatientMapper INSTANCE = Mappers.getMapper(PatientMapper.class);
 
     private static final Log LOG = LogFactory.getLog(PatientServiceImpl.class);
@@ -109,6 +116,18 @@ public class PatientServiceImpl implements PatientService {
             }
         });
         return completeTask;
+    }
+
+    @Override
+    public void updateTreatment(String id) {
+    List<Patient> patients = patientRepository.findAll();
+    patients.forEach(x->{
+        if (x.getDisease()!=null && Objects.equals(x.getDisease().getTreatment().getIdTreatment(), id)){
+            LOG.info("Update Treatment for Patients");
+            x.getDisease().setTreatment(INSTANCETREATMENT.toEntity(treatmentService.findById(id)));
+            patientRepository.save(x);
+        }
+    });
     }
 
 

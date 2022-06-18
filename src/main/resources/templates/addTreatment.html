@@ -19,38 +19,35 @@
 
                             <input type="hidden" th:if="${treatment.idTreatment != null}" th:field="${treatment.idTreatment}" />
 
-                            <div class="row">
+                            <div class="row" th:if="${treatment.idTreatment == null}">
                                 <div class="col-md-6 mb-4">
-
                                     <div class="form-outline">
                                         <input type="text" id="firstName" class="form-control form-control-lg" th:field="${treatment.name}" />
                                         <label class="form-label" for="firstName">name</label>
                                     </div>
-
                                 </div>
-
                             </div>
-
-                            <div class="row">
+                            <div class="row" th:if="${treatment.idTreatment !=null}">
+                                <div class="col-md-6 mb-4">
+                                    <div class="form-outline">
+                                        <h4 class="h4" th:text="${treatment.name}" th:field="${treatment.name}" ></h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" th:if="${treatment.idTreatment == null}">
                                 <div class="col-md-6 mb-4 d-flex align-items-center">
-
                                     <div class="form-outline datepicker w-100">
-                                        <input type="text" class="form-control form-control-lg" id="Date" th:field="${treatment.init}" />
+                                        <input type="text" class="form-control form-control-lg" id="Date" th:field="${treatment.init}"/>
                                         <label for="Date" class="form-label">init Date</label>
                                     </div>
-
                                     <div class="form-outline datepicker w-100">
-                                        <input type="text" class="form-control form-control-lg" for="Date"  th:field="${treatment.end}" />
+                                        <input type="text" class="form-control form-control-lg" for="Date"  th:field="${treatment.end}"/>
                                         <label for="Date" class="form-label">end Date</label>
                                     </div>
-
                                 </div>
-
                             </div>
-
                             <div class="row">
                                 <div class="col-12">
-
                                     <select th:field="${actionModel.idAction}" class="select form-control-lg" >
                                         <option th:each="action : ${actionList}"
                                                 th:value ="${action.idAction}"
@@ -61,11 +58,9 @@
                                     <label class="form-label select-label">Select an action</label>
                                 </div>
                             </div>
-
                             <div class="mt-4 pt-2">
                                 <input class="btn btn-primary btn-lg" type="submit" value="Guardar" />
                             </div>
-
                         </form>
                     </div>
                 </div>
