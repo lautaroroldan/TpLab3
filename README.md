@@ -1,5 +1,10 @@
 # TpLab3
  TP final laboratorio 3, esta desarrollado en Java, Spring Boot, HTML, CSS, Bootstrap, Thymeleaf, Hibernate y MongoDB
+ 
+ 
+ 
+ 
+ 
  Cosas por realizar:
  1) Cambiar los redirectview con un "+ y el id"
  2) Creacion de login
