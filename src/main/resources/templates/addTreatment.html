@@ -17,13 +17,13 @@
                         <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Add a Treatment</h3>
                         <form th:action="@{/treatmentController/add}" th:object="${treatment} " method="post">
 
-                            <input type="hidden" th:field="${treatment.idTreatment}" />
+                            <input type="hidden" th:if="${treatment.idTreatment != null}" th:field="${treatment.idTreatment}" />
 
                             <div class="row">
                                 <div class="col-md-6 mb-4">
 
                                     <div class="form-outline">
-                                        <input type="text" id="firstName" class="form-control form-control-lg" th:field="*{name}" />
+                                        <input type="text" id="firstName" class="form-control form-control-lg" th:field="${treatment.name}" />
                                         <label class="form-label" for="firstName">name</label>
                                     </div>
 
@@ -35,12 +35,12 @@
                                 <div class="col-md-6 mb-4 d-flex align-items-center">
 
                                     <div class="form-outline datepicker w-100">
-                                        <input type="text" class="form-control form-control-lg" id="Date" th:field="*{init}" />
+                                        <input type="text" class="form-control form-control-lg" id="Date" th:field="${treatment.init}" />
                                         <label for="Date" class="form-label">init Date</label>
                                     </div>
 
                                     <div class="form-outline datepicker w-100">
-                                        <input type="text" class="form-control form-control-lg" for="Date"  th:field="*{end}" />
+                                        <input type="text" class="form-control form-control-lg" for="Date"  th:field="${treatment.end}" />
                                         <label for="Date" class="form-label">end Date</label>
                                     </div>
 
@@ -51,9 +51,13 @@
                             <div class="row">
                                 <div class="col-12">
 
+<<<<<<< HEAD
                                     <select th:field="${actionDTO.id}" class="select form-control-lg" >
+=======
+                                    <select th:field="${actionModel.idAction}" class="select form-control-lg" >
+>>>>>>> 96235ac0df5e1f30a334c0082e404e3cf440a052
                                         <option th:each="action : ${actionList}"
-                                                th:value ="${action.id}"
+                                                th:value ="${action.idAction}"
                                                 th:text="${action.nameAction}"
                                                 th:selected="true"
                                         />

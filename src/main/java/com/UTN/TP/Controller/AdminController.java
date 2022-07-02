@@ -1,9 +1,18 @@
 package com.UTN.TP.Controller;
 
+<<<<<<< HEAD
 import com.UTN.TP.dto.AdminModel;
 import com.UTN.TP.dto.DoctorModel;
 import com.UTN.TP.dto.PatientModel;
+=======
+import com.UTN.TP.Entity.Patient;
+import com.UTN.TP.Model.AdminModel;
+import com.UTN.TP.Model.DiseaseModel;
+import com.UTN.TP.Model.DoctorModel;
+import com.UTN.TP.Model.PatientModel;
+>>>>>>> 96235ac0df5e1f30a334c0082e404e3cf440a052
 import com.UTN.TP.Service.AdminService;
+import com.UTN.TP.Service.DiseaseService;
 import com.UTN.TP.Service.DoctorService;
 import com.UTN.TP.Service.PatientService;
 import org.apache.commons.logging.Log;
@@ -27,6 +36,9 @@ public class AdminController {
     @Autowired
     PatientService patientService;
 
+    @Autowired
+    DiseaseService diseaseService;
+
     private static final Log LOG = LogFactory.getLog(AdminController.class);
 
 
@@ -40,8 +52,6 @@ public class AdminController {
 
     @PostMapping("/add")
     public RedirectView addAdmin(@ModelAttribute("admin") AdminModel adminModel){
-
-
         RedirectView redirectView = new RedirectView("/adminController/addAdmin");
         adminService.addAdmin(adminModel);
 
@@ -65,11 +75,11 @@ public class AdminController {
         LOG.info(doctorService.findById(id).getPatients());
         mav.addObject("patientsList",patientService.getPatientList());
         mav.addObject("patient",new PatientModel());
-        LOG.info(id + "ID : addPatientDoctor ");
+        LOG.info(id + "  ID : addPatientDoctor ");
         return mav;
     }
 
-    @PostMapping("/addPatient")
+    @PostMapping("/addPatientToDoctor")
     public RedirectView addPatient(@ModelAttribute("doctor")DoctorModel doctorModel, @ModelAttribute("patient")PatientModel idPatient){
         LOG.info("ID DOCTOR : "+ doctorModel.getIdDoctor());
         DoctorModel doc = doctorService.findById(doctorModel.getIdDoctor());
@@ -77,7 +87,18 @@ public class AdminController {
         PatientModel patient = patientService.findById(idPatient.getIdPatient());
         doc.getPatients().put(patient.getIdPatient(),patient);
         doctorService.addDoctor(doc);
-        return new RedirectView("/doctorController/findAll");
+        return new RedirectView("/doctorController/doctor/" + doctorModel.getIdDoctor());
     }
+
+//    @GetMapping("/patient/{patientId}")
+//    public ModelAndView addDiseaseToPatient(@PathVariable(value = "patientId")String patientid){
+//        ModelAndView modelAndView = new ModelAndView("addDiseaseToPatient");
+//        modelAndView.addObject("patient",patientService.findById(patientid));
+//        modelAndView.addObject("diseaseModel",new DiseaseModel());
+//        modelAndView.addObject("diseaseList",diseaseService.getDiseaseList());
+//        return modelAndView;
+//    }
+
+
 
 }

@@ -2,16 +2,23 @@ package com.UTN.TP.Service.Impl;
 
 import com.UTN.TP.Entity.Doctor;
 import com.UTN.TP.Mapper.DoctorMapper;
+<<<<<<< HEAD
 import com.UTN.TP.dto.DoctorModel;
+=======
+import com.UTN.TP.Mapper.PatientMapper;
+import com.UTN.TP.Model.DoctorModel;
+import com.UTN.TP.Model.PatientModel;
+>>>>>>> 96235ac0df5e1f30a334c0082e404e3cf440a052
 import com.UTN.TP.Repository.DoctorRepository;
 import com.UTN.TP.Service.DoctorService;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
+import java.util.concurrent.atomic.AtomicReference;
 
 @Service("DoctorServiceImpl")
 public class DoctorServiceImpl implements DoctorService {
@@ -20,6 +27,10 @@ public class DoctorServiceImpl implements DoctorService {
     DoctorRepository doctorRepository;
 
     DoctorMapper INSTANCE = Mappers.getMapper(DoctorMapper.class);
+
+    PatientMapper INSTANCEPATIENT = Mappers.getMapper(PatientMapper.class);
+
+    private static final Log LOG = LogFactory.getLog(DoctorServiceImpl.class);
 
     @Override
     public DoctorModel addDoctor(DoctorModel doctorModel) {
@@ -43,4 +54,51 @@ public class DoctorServiceImpl implements DoctorService {
         }
         return new DoctorModel();
     }
+
+    @Override
+    public HashMap<String,PatientModel> getAllPatientsFalse(String id) {
+        Optional<Doctor> opt = doctorRepository.findById(id);
+        LOG.info("METHOD : getAllPatientsFalse");
+        DoctorModel doc = new DoctorModel();
+        if (opt.isPresent()){
+            doc = INSTANCE.toModel(opt.get());
+        }
+        HashMap<String,PatientModel> hashMapFalse = new HashMap<>();
+        doc.getPatients().forEach( (k,v)-> {
+            if (!v.isServe()){
+                hashMapFalse.put(k,v);
+            }
+        });
+        LOG.info("RETURN FALSE HASHMAP " + hashMapFalse);
+        return hashMapFalse;
+    }
+
+    @Override
+    public HashMap<String,PatientModel> getAllPatientsTrue(String id) {
+        Optional<Doctor> opt = doctorRepository.findById(id);
+        LOG.info("METHOD : getAllPatientsTrue");
+        DoctorModel doc = new DoctorModel();
+        if (opt.isPresent()){
+            doc = INSTANCE.toModel(opt.get());
+        }
+        HashMap<String,PatientModel> hashMaptrue = new HashMap<>();
+        doc.getPatients().forEach( (k,v)-> {
+            if (v.isServe()){
+                hashMaptrue.put(k,v);
+            }
+        });
+        LOG.info("RETURN TRUE HASHMAP " + hashMaptrue);
+        return hashMaptrue;
+    }
+
+    @Override
+    public void deletePatient(String idPatient) {
+        List<Doctor> doctorList = doctorRepository.findAll();
+        doctorList.forEach(x -> {
+            LOG.info("Method : deletePatient -- Searching patient");
+            x.getPatients().remove(idPatient);
+            doctorRepository.save(x);
+        });
+    }
+
 }

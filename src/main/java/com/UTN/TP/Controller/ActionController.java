@@ -40,8 +40,12 @@ public class ActionController {
     @GetMapping("/addAction")
     ModelAndView add(){
         ModelAndView modelAndView = new ModelAndView("addAction");
+<<<<<<< HEAD
         modelAndView.addObject("action",new ActionDTO());
 
+=======
+        modelAndView.addObject("action",new ActionModel());
+>>>>>>> 96235ac0df5e1f30a334c0082e404e3cf440a052
         return modelAndView;
     }
 

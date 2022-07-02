@@ -22,6 +22,9 @@ public class DoctorController {
     @Autowired
     PatientService patientService;
 
+    @Autowired
+    DiseaseService diseaseService;
+
     private static final Log LOG = LogFactory.getLog(DoctorController.class);
 
     @GetMapping("/addDoctor")
@@ -49,11 +52,23 @@ public class DoctorController {
         return modelAndView;
     }
 
-    @GetMapping("/{id}")
-    public ModelAndView viewPatients(@PathVariable String id){
+    @GetMapping("/patients/{id}")
+    public ModelAndView viewPatients(@PathVariable(value = "id") String id){
         ModelAndView mav = new ModelAndView("patientListDoctor");
         mav.addObject("doctor", doctorService.findById(id));
-        LOG.info(doctorService.findById(id).getPatients());
+        mav.addObject("patientMap",doctorService.findById(id).getPatients());
+        return mav;
+    }
+
+    @GetMapping("/patient/{idDoctor}/{idPatient}")
+    public ModelAndView viewPatientProfile(@PathVariable (value = "idDoctor")String idDoctor,@PathVariable(value = "idPatient")String idPatient){
+        ModelAndView mav = new ModelAndView("profilePatientServe");
+        mav.addObject("doctor", doctorService.findById(idDoctor));
+        mav.addObject("patient",patientService.findById(idPatient));
+        LOG.info("PATIENT ID : "+patientService.findById(idPatient));
+        mav.addObject("disease",new DiseaseModel());
+        mav.addObject("diseaseList",diseaseService.getDiseaseList());
+        LOG.info("DOCTOR ID : " + doctorService.findById(idDoctor));
         return mav;
     }
 
@@ -63,6 +78,32 @@ public class DoctorController {
         mav.addObject("doctor",doctorService.findById(id));
         return mav;
     }
+
+//    @GetMapping("/patientDisease/{patientId}")
+//    public ModelAndView addDiseaseToPatient(@PathVariable(value = "patientId")String patientid){
+//        ModelAndView modelAndView = new ModelAndView("addDiseaseToPatient");
+//        modelAndView.addObject("patient",patientService.findById(patientid));
+//        modelAndView.addObject("diseaseModel",new DiseaseModel());
+//        modelAndView.addObject("diseaseList",diseaseService.getDiseaseList());
+//        return modelAndView;
+//    }
+
+    @PostMapping("/addDiseaseToPatient/{idDoctor}/{idPatient}")
+    public RedirectView postDiseaseToPatient(@ModelAttribute("doctor")DoctorModel doctorModel, @ModelAttribute("patient")PatientModel patientModel, @ModelAttribute("disease")DiseaseModel diseaseModel){
+        LOG.info("FIND BY ID PATIENT : " + patientService.findById(patientModel.getIdPatient()));
+        PatientModel patient = patientService.findById(patientModel.getIdPatient());
+        DoctorModel doctor = doctorService.findById(doctorModel.getIdDoctor());
+        DiseaseModel disease = diseaseService.findById(diseaseModel.getIdDisease());
+        doctor.getPatients().get(patient.getIdPatient()).setDisease(diseaseService.findById(disease.getIdDisease()));
+        doctor.getPatients().get(patient.getIdPatient()).setServe(true);
+        patient.setServe(true);
+        patient.setDisease(diseaseService.findById(disease.getIdDisease()));
+        LOG.info("FIND BY ID DISEASE : " + diseaseService.findById(disease.getIdDisease()));
+        patientService.addPatient(patient);
+        doctorService.addDoctor(doctor);
+        return new RedirectView("/doctorController/patient/"+doctor.getIdDoctor() + "/" + patient.getIdPatient());
+    }
+
 
 
 }

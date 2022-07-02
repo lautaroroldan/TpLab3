@@ -17,6 +17,7 @@ public class PatientModel extends PersonModel{
     private Date entry;
     private DiseaseModel disease;
     private boolean serve;
+<<<<<<< HEAD:src/main/java/com/UTN/TP/dto/PatientModel.java
     private List<ActionDTO> incompleteTaskList;
 
     public long getDni() {
@@ -60,4 +61,7 @@ public class PatientModel extends PersonModel{
     }
 
 
+=======
+    private List<ActionModel> incompleteTaskList;
+>>>>>>> 96235ac0df5e1f30a334c0082e404e3cf440a052:src/main/java/com/UTN/TP/Model/PatientModel.java
 }

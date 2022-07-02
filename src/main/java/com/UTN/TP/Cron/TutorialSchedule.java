@@ -8,7 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Component
@@ -22,7 +25,7 @@ public class TutorialSchedule {
     @Scheduled(cron = "  0 0/5 * * * ? ")
     public void scheduleUsingExpression(){
         LocalDateTime localDateTime = LocalDateTime.now();
-        LOG.info(localDateTime);
+        LOG.info("LOCAL TIME : "+localDateTime);
     }
 
     @Scheduled(cron = "@daily")
@@ -31,14 +34,24 @@ public class TutorialSchedule {
     public void resetdoItTaksAndAddToIncompleteTask(){
         LOG.info("Traigo la lista del repo");
         List<PatientModel> patientModels = patientService.getPatientList();
+//        LocalDate date = LocalDate.now();
         patientModels.forEach(x -> {
+            if (x.getDisease()!=null){
             x.getDisease().getTreatment().getActionList().forEach( y -> {
                 if (!y.isDoIt()){
+                    LOG.info("Entro al if METHOD y.isDoIt");
+                    if (x.getIncompleteTaskList()==null){
+                        LOG.info("Creo la lista IncompleteTask porque esta nula");
+                        x.setIncompleteTaskList(new ArrayList<>());
+                    }
                     x.getIncompleteTaskList().add(y);
+//                    int index = x.getIncompleteTaskList().indexOf(y);
+//                    x.getIncompleteTaskList().get(index).setInit(date);
                 }
                 LOG.info("cambio el " + y.isDoIt() + " por false");
                 y.setDoIt(false);
             });
+            }
             LOG.info("El patient a guardar es " + x);
             patientService.addPatient(x);
         });
