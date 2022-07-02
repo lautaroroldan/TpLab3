@@ -2,11 +2,8 @@ package com.UTN.TP.Service.Impl;
 
 
 import com.UTN.TP.Entity.Action;
-import com.UTN.TP.Entity.Disease;
-import com.UTN.TP.Entity.Treatment;
 import com.UTN.TP.Mapper.ActionMapper;
-import com.UTN.TP.Model.ActionModel;
-import com.UTN.TP.Model.DiseaseModel;
+import com.UTN.TP.dto.ActionDTO;
 import com.UTN.TP.Repository.ActionRepository;
 import com.UTN.TP.Service.ActionService;
 import org.mapstruct.factory.Mappers;
@@ -26,28 +23,28 @@ public class ActionServiceImpl implements ActionService {
     ActionMapper INSTANCE = Mappers.getMapper(ActionMapper.class);
 
     @Override
-    public ActionModel addAction(ActionModel actionModel) {
-        actionRepository.save(INSTANCE.toEntity(actionModel));
-        return actionModel;
+    public ActionDTO addAction(ActionDTO actionDTO) {
+        actionRepository.save(INSTANCE.toEntity(actionDTO));
+        return actionDTO;
     }
 
     @Override
-    public List<ActionModel> getActionList() {
+    public List<ActionDTO> getActionList() {
         List<Action> actions = actionRepository.findAll();
-        List<ActionModel> actionModels = new ArrayList<>();
-        actions.forEach(x -> actionModels.add(INSTANCE.toModel(x)));
-        return actionModels;
+        List<ActionDTO> actionDTOS = new ArrayList<>();
+        actions.forEach(x -> actionDTOS.add(INSTANCE.toModel(x)));
+        return actionDTOS;
     }
 
     @Override
-    public ActionModel findById(String id) {
+    public ActionDTO findById(String id) {
         Optional<Action> opt = actionRepository.findById(id);
 
         if(opt.isPresent()){
             return INSTANCE.toModel(opt.get());
         }else{
             System.out.println("Entre al else");
-            return new ActionModel();
+            return new ActionDTO();
         }
     }
 }

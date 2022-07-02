@@ -1,7 +1,6 @@
 package com.UTN.TP.Service;
 
-import com.UTN.TP.Model.ActionModel;
-import com.UTN.TP.Model.TreatmentModel;
+import com.UTN.TP.dto.TreatmentModel;
 
 import java.util.List;
 

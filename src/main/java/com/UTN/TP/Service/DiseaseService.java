@@ -1,8 +1,6 @@
 package com.UTN.TP.Service;
 
-import com.UTN.TP.Entity.Disease;
-import com.UTN.TP.Model.DiseaseModel;
-import com.UTN.TP.Model.TreatmentModel;
+import com.UTN.TP.dto.DiseaseModel;
 
 import java.util.List;
 

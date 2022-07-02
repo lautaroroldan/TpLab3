@@ -1,9 +1,8 @@
 package com.UTN.TP.Controller;
 
-import com.UTN.TP.Entity.Patient;
-import com.UTN.TP.Model.AdminModel;
-import com.UTN.TP.Model.DoctorModel;
-import com.UTN.TP.Model.PatientModel;
+import com.UTN.TP.dto.AdminModel;
+import com.UTN.TP.dto.DoctorModel;
+import com.UTN.TP.dto.PatientModel;
 import com.UTN.TP.Service.AdminService;
 import com.UTN.TP.Service.DoctorService;
 import com.UTN.TP.Service.PatientService;
@@ -13,8 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
-
-import java.util.HashMap;
 
 
 @RestController

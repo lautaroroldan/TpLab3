@@ -51,7 +51,7 @@
                             <div class="row">
                                 <div class="col-12">
 
-                                    <select th:field="${actionModel.id}" class="select form-control-lg" >
+                                    <select th:field="${actionDTO.id}" class="select form-control-lg" >
                                         <option th:each="action : ${actionList}"
                                                 th:value ="${action.id}"
                                                 th:text="${action.nameAction}"

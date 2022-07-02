@@ -1,17 +1,15 @@
 package com.UTN.TP.Service;
 
-import com.UTN.TP.Model.ActionModel;
-import org.mapstruct.Mapper;
-import org.mapstruct.factory.Mappers;
+import com.UTN.TP.dto.ActionDTO;
 
 import java.util.List;
 
 
 public interface ActionService {
 
-    ActionModel addAction(ActionModel actionModel);
-    List<ActionModel> getActionList();
-    ActionModel findById(String id);
+    ActionDTO addAction(ActionDTO actionDTO);
+    List<ActionDTO> getActionList();
+    ActionDTO findById(String id);
 
 
 }

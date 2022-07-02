@@ -2,7 +2,7 @@ package com.UTN.TP.Service.Impl;
 
 import com.UTN.TP.Entity.Treatment;
 import com.UTN.TP.Mapper.TreatmentMapper;
-import com.UTN.TP.Model.TreatmentModel;
+import com.UTN.TP.dto.TreatmentModel;
 import com.UTN.TP.Repository.TreatmentRepository;
 import com.UTN.TP.Service.TreatmentService;
 import org.mapstruct.factory.Mappers;

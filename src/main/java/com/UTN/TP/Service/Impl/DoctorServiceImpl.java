@@ -2,7 +2,7 @@ package com.UTN.TP.Service.Impl;
 
 import com.UTN.TP.Entity.Doctor;
 import com.UTN.TP.Mapper.DoctorMapper;
-import com.UTN.TP.Model.DoctorModel;
+import com.UTN.TP.dto.DoctorModel;
 import com.UTN.TP.Repository.DoctorRepository;
 import com.UTN.TP.Service.DoctorService;
 import org.mapstruct.factory.Mappers;

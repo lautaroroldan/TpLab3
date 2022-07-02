@@ -1,7 +1,7 @@
 package com.UTN.TP.Mapper;
 
 import com.UTN.TP.Entity.Admin;
-import com.UTN.TP.Model.AdminModel;
+import com.UTN.TP.dto.AdminModel;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 

@@ -1,7 +1,7 @@
 package com.UTN.TP.Controller;
 
-import com.UTN.TP.Model.DiseaseModel;
-import com.UTN.TP.Model.TreatmentModel;
+import com.UTN.TP.dto.DiseaseModel;
+import com.UTN.TP.dto.TreatmentModel;
 import com.UTN.TP.Service.DiseaseService;
 import com.UTN.TP.Service.TreatmentService;
 import org.springframework.beans.factory.annotation.Autowired;

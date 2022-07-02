@@ -1,7 +1,7 @@
 package com.UTN.TP.Controller;
 
 
-import com.UTN.TP.Model.ActionModel;
+import com.UTN.TP.dto.ActionDTO;
 import com.UTN.TP.Service.ActionService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -22,14 +22,14 @@ public class ActionController {
     ActionService actionService;
 
     @PostMapping("/addActionJson")
-    public void addActionJson(@RequestBody ActionModel actionModel){
+    public void addActionJson(@RequestBody ActionDTO actionDTO){
 
-        actionService.addAction(actionModel);
+        actionService.addAction(actionDTO);
 
     }
 
     @GetMapping("/findAllJson")
-    public List<ActionModel> findAllJson(){
+    public List<ActionDTO> findAllJson(){
 
         return actionService.getActionList();
     }
@@ -40,16 +40,16 @@ public class ActionController {
     @GetMapping("/addAction")
     ModelAndView add(){
         ModelAndView modelAndView = new ModelAndView("addAction");
-        modelAndView.addObject("action",new ActionModel());
+        modelAndView.addObject("action",new ActionDTO());
 
         return modelAndView;
     }
 
     @PostMapping("/add")
-    public RedirectView addAction(@ModelAttribute("action")ActionModel actionModel){
+    public RedirectView addAction(@ModelAttribute("action") ActionDTO actionDTO){
 
         RedirectView redirectView = new RedirectView("/actionController/findAll");
-        actionService.addAction(actionModel);
+        actionService.addAction(actionDTO);
 
         return redirectView;
     }

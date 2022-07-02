@@ -1,7 +1,7 @@
 package com.UTN.TP.Controller;
 
-import com.UTN.TP.Model.ActionModel;
-import com.UTN.TP.Model.TreatmentModel;
+import com.UTN.TP.dto.ActionDTO;
+import com.UTN.TP.dto.TreatmentModel;
 import com.UTN.TP.Service.ActionService;
 import com.UTN.TP.Service.TreatmentService;
 import org.apache.commons.logging.Log;
@@ -18,12 +18,7 @@ import java.util.List;
 @RequestMapping("/treatmentController")
 public class TreatmentController {
 
-    @PostMapping("/addJson")
-    public void addTreatment(@RequestBody TreatmentModel treatmentModel){
-        treatmentService.addTreatment(treatmentModel);
-    }
-
-    private static final Log LOG = LogFactory.getLog(TreatmentController.class);
+    private static final Log log = LogFactory.getLog(TreatmentController.class);
 
     @Autowired
     TreatmentService treatmentService;
@@ -31,29 +26,33 @@ public class TreatmentController {
     @Autowired
     ActionService actionService;
 
+    @PostMapping("/addJson")
+    public void addTreatment(@RequestBody TreatmentModel treatmentModel){
+        treatmentService.addTreatment(treatmentModel);
+    }
 
     @GetMapping("/addTreatment")
     public ModelAndView add(){
         ModelAndView mav = new ModelAndView("addTreatment");
         mav.addObject("treatment", new TreatmentModel());
         mav.addObject("actionList", actionService.getActionList());
-        mav.addObject("actionModel", new ActionModel());
+        mav.addObject("actionModel", new ActionDTO());
         return mav;
     }
 
     @PostMapping("/add")
-    public RedirectView addTreatment(@ModelAttribute("treatment") TreatmentModel treatmentModel, @ModelAttribute("actionModel") ActionModel actionModel){
+    public RedirectView addTreatment(@ModelAttribute("treatment") TreatmentModel treatmentModel, @ModelAttribute("actionModel") ActionDTO actionDTO){
         RedirectView redirectView = new RedirectView("/treatmentController/findAll");
 
-        ActionModel actionModel1 = actionService.findById(actionModel.getIdAction());
+        ActionDTO actionDTO1 = actionService.findById(actionDTO.getIdAction());
 
-        LOG.info(" El ID seleccionado es " + actionModel.getIdAction());
-        LOG.info("El actionModel buscado por id es : " + actionService.findById(actionModel.getIdAction()));
+        log.info(" El ID seleccionado es " + actionDTO.getIdAction());
+        log.info("El actionModel buscado por id es : " + actionService.findById(actionDTO.getIdAction()));
 
-        List<ActionModel> actionModels = new ArrayList<>();
-        actionModels.add(actionModel1);
+        List<ActionDTO> actionDTOS = new ArrayList<>();
+        actionDTOS.add(actionDTO1);
 
-        treatmentModel.setActionList(actionModels);
+        treatmentModel.setActionList(actionDTOS);
         treatmentService.addTreatment(treatmentModel);
         return redirectView;
     }

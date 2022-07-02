@@ -1,6 +1,5 @@
-package com.UTN.TP.Model;
+package com.UTN.TP.dto;
 
-import com.UTN.TP.Service.ActionService;
 import lombok.*;
 
 import java.util.Date;
@@ -14,7 +13,7 @@ import java.util.List;
 public class TreatmentModel {
     private String idTreatment;
     private String name;
-    private List<ActionModel> actionList;
+    private List<ActionDTO> actionList;
     private Date init;
     private Date end;
 }

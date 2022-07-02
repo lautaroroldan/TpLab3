@@ -1,6 +1,6 @@
 package com.UTN.TP.Service;
 
-import com.UTN.TP.Model.PersonModel;
+import com.UTN.TP.dto.PersonModel;
 
 import java.util.List;
 

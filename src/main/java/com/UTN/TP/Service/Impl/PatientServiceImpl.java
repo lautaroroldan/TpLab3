@@ -2,18 +2,15 @@ package com.UTN.TP.Service.Impl;
 
 import com.UTN.TP.Entity.Patient;
 import com.UTN.TP.Mapper.PatientMapper;
-import com.UTN.TP.Model.ActionModel;
-import com.UTN.TP.Model.PatientModel;
+import com.UTN.TP.dto.ActionDTO;
+import com.UTN.TP.dto.PatientModel;
 import com.UTN.TP.Repository.PatientRepository;
 import com.UTN.TP.Service.PatientService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.data.mongodb.core.query.Criteria;
-import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -55,7 +52,7 @@ public class PatientServiceImpl implements PatientService {
     }
 
     @Override
-    public PatientModel addIncompleteTask(String id,ActionModel actionModel) {
+    public PatientModel addIncompleteTask(String id, ActionDTO actionDTO) {
 
         return null;
     }

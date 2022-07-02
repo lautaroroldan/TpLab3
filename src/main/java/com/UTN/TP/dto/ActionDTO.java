@@ -1,4 +1,4 @@
-package com.UTN.TP.Model;
+package com.UTN.TP.dto;
 
 import lombok.*;
 
@@ -9,7 +9,7 @@ import java.util.Date;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-public class ActionModel {
+public class ActionDTO {
     private String idAction;
     private String nameAction;
     private Date init;

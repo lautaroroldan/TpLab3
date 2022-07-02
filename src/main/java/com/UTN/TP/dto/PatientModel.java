@@ -1,6 +1,5 @@
-package com.UTN.TP.Model;
+package com.UTN.TP.dto;
 
-import com.UTN.TP.Entity.Action;
 import lombok.*;
 
 import java.util.Date;
@@ -18,7 +17,7 @@ public class PatientModel extends PersonModel{
     private Date entry;
     private DiseaseModel disease;
     private boolean serve;
-    private List<ActionModel> incompleteTaskList;
+    private List<ActionDTO> incompleteTaskList;
 
     public long getDni() {
         return dni;
@@ -52,11 +51,11 @@ public class PatientModel extends PersonModel{
         this.serve = serve;
     }
 
-    public List<ActionModel> getIncompleteTaskList() {
+    public List<ActionDTO> getIncompleteTaskList() {
         return incompleteTaskList;
     }
 
-    public void setIncompleteTaskList(List<ActionModel> incompleteTaskList) {
+    public void setIncompleteTaskList(List<ActionDTO> incompleteTaskList) {
         this.incompleteTaskList = incompleteTaskList;
     }
 

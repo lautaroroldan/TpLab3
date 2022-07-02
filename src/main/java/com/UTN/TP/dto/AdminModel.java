@@ -1,4 +1,4 @@
-package com.UTN.TP.Model;
+package com.UTN.TP.dto;
 
 import lombok.*;
 

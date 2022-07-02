@@ -1,6 +1,6 @@
 package com.UTN.TP.Service;
 
-import com.UTN.TP.Model.AdminModel;
+import com.UTN.TP.dto.AdminModel;
 
 import java.util.List;
 

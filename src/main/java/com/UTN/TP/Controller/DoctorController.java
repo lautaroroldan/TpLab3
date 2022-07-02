@@ -1,10 +1,7 @@
 package com.UTN.TP.Controller;
 
-import com.UTN.TP.Entity.Patient;
-import com.UTN.TP.Model.DiseaseModel;
-import com.UTN.TP.Model.DoctorModel;
-import com.UTN.TP.Model.PatientModel;
-import com.UTN.TP.Model.TreatmentModel;
+import com.UTN.TP.dto.DoctorModel;
+import com.UTN.TP.dto.PatientModel;
 import com.UTN.TP.Service.*;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;

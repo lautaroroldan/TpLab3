@@ -1,7 +1,7 @@
 package com.UTN.TP.Mapper;
 
 import com.UTN.TP.Entity.Doctor;
-import com.UTN.TP.Model.DoctorModel;
+import com.UTN.TP.dto.DoctorModel;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 

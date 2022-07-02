@@ -2,7 +2,7 @@ package com.UTN.TP.Service.Impl;
 
 import com.UTN.TP.Entity.Person;
 import com.UTN.TP.Mapper.PersonMapper;
-import com.UTN.TP.Model.PersonModel;
+import com.UTN.TP.dto.PersonModel;
 import com.UTN.TP.Repository.PersonRepository;
 import com.UTN.TP.Service.PersonService;
 import org.mapstruct.factory.Mappers;

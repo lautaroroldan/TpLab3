@@ -1,6 +1,5 @@
 package com.UTN.TP.Entity;
 
-import com.UTN.TP.Model.DiseaseModel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

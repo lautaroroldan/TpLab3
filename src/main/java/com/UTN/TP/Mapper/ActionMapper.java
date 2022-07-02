@@ -1,7 +1,7 @@
 package com.UTN.TP.Mapper;
 
 import com.UTN.TP.Entity.Action;
-import com.UTN.TP.Model.ActionModel;
+import com.UTN.TP.dto.ActionDTO;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
@@ -10,6 +10,6 @@ public interface ActionMapper {
 
     ActionMapper INSTANCE = Mappers.getMapper(ActionMapper.class);
 
-    Action toEntity(ActionModel actionModel);
-    ActionModel toModel(Action action);
+    Action toEntity(ActionDTO actionDTO);
+    ActionDTO toModel(Action action);
 }

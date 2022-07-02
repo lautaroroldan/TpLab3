@@ -1,7 +1,7 @@
 package com.UTN.TP.Controller;
 
-import com.UTN.TP.Model.DiseaseModel;
-import com.UTN.TP.Model.PatientModel;
+import com.UTN.TP.dto.DiseaseModel;
+import com.UTN.TP.dto.PatientModel;
 import com.UTN.TP.Service.DiseaseService;
 import com.UTN.TP.Service.PatientService;
 import org.apache.commons.logging.Log;
@@ -10,9 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
-
-import javax.websocket.server.PathParam;
-import java.time.LocalDate;
 
 @RestController
 @RequestMapping("/patientController")

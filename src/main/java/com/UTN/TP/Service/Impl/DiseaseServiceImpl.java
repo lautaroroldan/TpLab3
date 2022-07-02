@@ -2,7 +2,7 @@ package com.UTN.TP.Service.Impl;
 
 import com.UTN.TP.Entity.Disease;
 import com.UTN.TP.Mapper.DiseaseMapper;
-import com.UTN.TP.Model.DiseaseModel;
+import com.UTN.TP.dto.DiseaseModel;
 import com.UTN.TP.Repository.DiseaseRepository;
 import com.UTN.TP.Service.DiseaseService;
 import org.mapstruct.factory.Mappers;
@@ -42,11 +42,6 @@ public class DiseaseServiceImpl implements DiseaseService {
 
         Optional<Disease> optionalDisease = diseaseRepository.findById(id);
 
-        if(optionalDisease.isPresent()){
-            return INSTANCE.toModel(optionalDisease.get());
-        }else{
-            System.out.println("Entre al else");
-            return new DiseaseModel();
-        }
+        return optionalDisease.isPresent() ? INSTANCE.toModel(optionalDisease.get()) : new DiseaseModel();
     }
 }
