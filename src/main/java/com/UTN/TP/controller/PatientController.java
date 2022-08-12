@@ -1,12 +1,6 @@
 package com.UTN.TP.controller;
 
-<<<<<<< HEAD
 import com.UTN.TP.dto.PatientDTO;
-=======
-import com.UTN.TP.Model.DiseaseModel;
-import com.UTN.TP.Model.DoctorModel;
-import com.UTN.TP.Model.PatientModel;
->>>>>>> 96235ac0df5e1f30a334c0082e404e3cf440a052
 import com.UTN.TP.service.DiseaseService;
 import com.UTN.TP.service.DoctorService;
 import com.UTN.TP.service.PatientService;
@@ -16,12 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
-
-<<<<<<< HEAD
-=======
 import java.util.Objects;
-
->>>>>>> 96235ac0df5e1f30a334c0082e404e3cf440a052
 @RestController
 @RequestMapping("/patientController")
 public class PatientController {

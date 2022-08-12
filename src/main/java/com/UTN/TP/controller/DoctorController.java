@@ -1,5 +1,6 @@
 package com.UTN.TP.controller;
 
+import com.UTN.TP.dto.DiseaseDTO;
 import com.UTN.TP.dto.DoctorDTO;
 import com.UTN.TP.dto.PatientDTO;
 import com.UTN.TP.service.*;
@@ -66,7 +67,7 @@ public class DoctorController {
         mav.addObject("doctor", doctorService.findById(idDoctor));
         mav.addObject("patient",patientService.findById(idPatient));
         LOG.info("PATIENT ID : "+patientService.findById(idPatient));
-        mav.addObject("disease",new DiseaseModel());
+        mav.addObject("disease",new DiseaseDTO());
         mav.addObject("diseaseList",diseaseService.getDiseaseList());
         LOG.info("DOCTOR ID : " + doctorService.findById(idDoctor));
         return mav;
@@ -89,11 +90,11 @@ public class DoctorController {
 //    }
 
     @PostMapping("/addDiseaseToPatient/{idDoctor}/{idPatient}")
-    public RedirectView postDiseaseToPatient(@ModelAttribute("doctor") DoctorDTO doctorDTO, @ModelAttribute("patient") PatientDTO patientDTO, @ModelAttribute("disease")DiseaseModel diseaseModel){
+    public RedirectView postDiseaseToPatient(@ModelAttribute("doctor") DoctorDTO doctorDTO, @ModelAttribute("patient") PatientDTO patientDTO, @ModelAttribute("disease") DiseaseDTO diseaseModel){
         LOG.info("FIND BY ID PATIENT : " + patientService.findById(patientDTO.getIdPatient()));
         PatientDTO patient = patientService.findById(patientDTO.getIdPatient());
         DoctorDTO doctor = doctorService.findById(doctorDTO.getIdDoctor());
-        DiseaseModel disease = diseaseService.findById(diseaseModel.getIdDisease());
+        DiseaseDTO disease = diseaseService.findById(diseaseModel.getIdDisease());
         doctor.getPatients().get(patient.getIdPatient()).setDisease(diseaseService.findById(disease.getIdDisease()));
         doctor.getPatients().get(patient.getIdPatient()).setServe(true);
         patient.setServe(true);

@@ -1,11 +1,10 @@
 package com.UTN.TP.service;
 
 import com.UTN.TP.dto.DoctorDTO;
+import com.UTN.TP.dto.PatientDTO;
 
-<<<<<<< HEAD
-=======
+
 import java.util.HashMap;
->>>>>>> 96235ac0df5e1f30a334c0082e404e3cf440a052
 import java.util.List;
 
 public interface DoctorService {
@@ -14,7 +13,7 @@ public interface DoctorService {
     List<DoctorDTO> getDoctorList();
     DoctorDTO findById(String id);
 
-    HashMap<String,PatientModel> getAllPatientsFalse(String id);
-    HashMap<String,PatientModel> getAllPatientsTrue(String id);
+    HashMap<String, PatientDTO> getAllPatientsFalse(String id);
+    HashMap<String,PatientDTO> getAllPatientsTrue(String id);
     void deletePatient(String id);
 }

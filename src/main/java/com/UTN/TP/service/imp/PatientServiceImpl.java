@@ -2,13 +2,8 @@ package com.UTN.TP.service.imp;
 
 import com.UTN.TP.entity.Patient;
 import com.UTN.TP.mapper.PatientMapper;
-<<<<<<< HEAD
 import com.UTN.TP.dto.ActionDTO;
 import com.UTN.TP.dto.PatientDTO;
-=======
-import com.UTN.TP.Model.ActionModel;
-import com.UTN.TP.Model.PatientModel;
->>>>>>> 96235ac0df5e1f30a334c0082e404e3cf440a052
 import com.UTN.TP.repository.PatientRepository;
 import com.UTN.TP.service.DoctorService;
 import com.UTN.TP.service.PatientService;
@@ -55,15 +50,9 @@ public class PatientServiceImpl implements PatientService {
     }
 
     @Override
-<<<<<<< HEAD
-    public PatientDTO addIncompleteTask(String id, ActionDTO actionDTO) {
-
-        return null;
-=======
     public void deletePatient(String id) {
         doctorService.deletePatient(id);
         patientRepository.deleteById(id);
->>>>>>> 96235ac0df5e1f30a334c0082e404e3cf440a052
     }
 
     @Override
@@ -74,13 +63,13 @@ public class PatientServiceImpl implements PatientService {
     }
 
     @Override
-    public List<ActionModel> findTasksById(String id) {
+    public List<ActionDTO> findTasksById(String id) {
         Optional<Patient> opt = patientRepository.findById(id);
         PatientDTO patient = INSTANCE.toModel(opt.get());
         if (patient.getDisease() != null){
             return patient.getDisease().getTreatment().getActionList();
         }
-        return new ArrayList<ActionModel>();
+        return new ArrayList<ActionDTO>();
     }
 
     @Override
@@ -90,11 +79,11 @@ public class PatientServiceImpl implements PatientService {
     }
 
     @Override
-    public List<ActionModel> findIncompleteTaskById(String id) {
+    public List<ActionDTO> findIncompleteTaskById(String id) {
         Optional<Patient> opt = patientRepository.findById(id);
         PatientDTO patientDTO = INSTANCE.toModel(opt.get());
-        List<ActionModel> tasks = patientDTO.getDisease().getTreatment().getActionList();
-        List<ActionModel> incompleteTask = new ArrayList<>();
+        List<ActionDTO> tasks = patientDTO.getDisease().getTreatment().getActionList();
+        List<ActionDTO> incompleteTask = new ArrayList<>();
         tasks.forEach(x -> {
             if (!x.isDoIt()){
                 incompleteTask.add(x);
@@ -104,11 +93,11 @@ public class PatientServiceImpl implements PatientService {
     }
 
     @Override
-    public List<ActionModel> findCompleteTaskById(String id) {
+    public List<ActionDTO> findCompleteTaskById(String id) {
         Optional<Patient> opt = patientRepository.findById(id);
         PatientDTO patientDTO = INSTANCE.toModel(opt.get());
-        List<ActionModel> tasks = patientDTO.getDisease().getTreatment().getActionList();
-        List<ActionModel> completeTask = new ArrayList<>();
+        List<ActionDTO> tasks = patientDTO.getDisease().getTreatment().getActionList();
+        List<ActionDTO> completeTask = new ArrayList<>();
         tasks.forEach(x -> {
             if (x.isDoIt()){
                 completeTask.add(x);
